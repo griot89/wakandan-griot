@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wakandan AI Griot - Standalone Edition</title>
+    
+    <!-- External Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIldha2FuZGFuIEFJIEdyaW90IiwKICAic2hvcnRfbmFtZSI6ICJHcmlvdCIsCiAgImRlc2NyaXB0aW9uIjogIllvdXIgQUktcG93ZXJlZCBXYWthbmRhbiBhc3Npc3RhbnQiLAogICJ0aGVtZV9jb2xvciI6ICIjOTMzM2VhIiwKICAiYmFja2dyb3VuZF9jb2xvciI6ICIjMDAwMDAwIiwKICAiZGlzcGxheSI6ICJzdGFuZGFsb25lIiwKICAic3RhcnRfdXJsIjogIi8iLAogICJpY29ucyI6IFsKICAgIHsKICAgICAgInNyYyI6ICJkYXRhOmltYWdlL3N2Zyt4bWw7YmFzZTY0LFBITjJaeUIzYVdSMGFEMGlNVGt5SWlCb1pXbG5hSFE5SWpFNU1pSWdkbWxsZDBKdmVEMGlNQ0F3SURFNU1pQXhPVElpSUdacGJHdzlJaU01TXpNelpXRWlQaUE4Y0dGMGFDQmtQU0pOT1RZc01UQXpMamhETVRJeUxqZ3NOVGdzTVRReUxqZ3NOREF0T1RZc01UQTNMamhETURZc0xqZ3lMakV4TVRVM1RUVXNOEMT0FZWVRNd0k2TmpFeUxqY3hMakUxTFRFeUxqVjlJajQ4TDNCaGRHZzNQQTwvc": "mWkWJpbnNrdGhURTIyNl"...etc
+    
+    <style>
+        /* Custom Wakandan Design System */
+        :root {
+            --vibranium-purple: #9333ea;
+            --vibranium-blue: #3b82f6;
+            --kimoyo-orange: #f59e0b;
+            --wakandan-gold: #fbbf24;
+            --dark-bg: #000;
+            --darker-purple: #1a0033;
+            --card-bg: rgba(26, 0, 51, 0.5);
+            --glow-purple: 0 0 15px rgba(147, 51, 234, 0.8);
+            --glow-blue: 0 0 15px rgba(59, 130, 246, 0.8);
+            --glow-orange: 0 0 15px rgba(245, 158, 11, 0.8);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: radial-gradient(circle at center, var(--darker-purple) 0%, var(--dark-bg) 70%);
+            color: white;
+            min-height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Star field background */
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            animation: twinkle var(--duration, 3s) infinite ease-in-out;
+            animation-delay: var(--delay, 0s);
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.1; }
+            50% { opacity: 1; }
+        }
+
+        /* Header */
+        .header {
+            position: absolute;
+            top: 20px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            z-index: 10;
+        }
+
+        .title {
+            font-size: 2rem;
+            margin-bottom: 8px;
+            text-shadow: var(--glow-purple);
+            letter-spacing: 3px;
+            font-weight: 300;
+        }
+
+        .time {
+            font-size: 1rem;
+            color: var(--vibranium-blue);
+            text-shadow: var(--glow-blue);
+            letter-spacing: 1px;
+        }
+
+        /* 3D Hologram container */
+        .hologram-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70%;
+            max-width: 500px;
+            height: 40vh;
+            z-index: 5;
+        }
+
+        #hologram-canvas {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Floating Kimoyo Orb */
+        .kimoyo-orb {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--vibranium-purple), var(--vibranium-blue));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 20;
+            box-shadow: 0 0 20px var(--vibranium-purple);
+            animation: float 6s ease-in-out infinite;
+            transition: transform 0.3s ease;
+        }
+
+        .kimoyo-orb:hover {
+            transform: scale(1.1);
+        }
+
+        .kimoyo-orb i {
+            font-size: 24px;
+            color: white;
+            text-shadow: var(--glow-orange);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        /* Chat interface */
+        .chat-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.9);
+            width: 90%;
+            max-width: 400px;
+            height: 70vh;
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), var(--glow-purple);
+            overflow: hidden;
+            display: none;
+            flex-direction: column;
+            z-index: 30;
+            transition: all 0.4s ease;
+        }
+
+        .chat-container.active {
+            display: flex;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .chat-header {
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-header h2 {
+            color: var(--kimoyo-orange);
+            text-shadow: var(--glow-orange);
+            font-weight: 400;
+            letter-spacing: 1px;
+            font-size: 1.2rem;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .close-btn:hover {
+            color: var(--kimoyo-orange);
+            transform: scale(1.1);
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .chat-messages::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .chat-messages::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .chat-messages::-webkit-scrollbar-thumb {
+            background-color: var(--kimoyo-orange);
+            border-radius: 10px;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 10px 12px;
+            border-radius: 12px;
+            position: relative;
+            animation: fadeIn 0.3s ease-out;
+            line-height: 1.4;
+            font-size: 14px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .user-message {
+            background: linear-gradient(135deg, rgba(147, 51, 234, 0.3), rgba(124, 58, 237, 0.2));
+            align-self: flex-end;
+            border: 1px solid rgba(147, 51, 234, 0.3);
+        }
+
+        .griot-message {
+            background: linear-gradient(135deg, rgba(26, 0, 51, 0.5), rgba(0, 0, 0, 0.3));
+            align-self: flex-start;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .chat-input {
+            display: flex;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.3);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            gap: 8px;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 10px 15px;
+            border-radius: 20px;
+            border: none;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            font-size: 14px;
+            outline: none;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s;
+        }
+
+        .chat-input input:focus {
+            border-color: var(--kimoyo-orange);
+            box-shadow: 0 0 10px rgba(245, 158, 11, 0.5);
+        }
+
+        .send-btn, .voice-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--kimoyo-orange);
+            border: none;
+            color: black;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            box-shadow: var(--glow-orange);
+        }
+
+        .send-btn:hover, .voice-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px var(--kimoyo-orange);
+        }
+
+        .voice-btn {
+            background: var(--vibranium-blue);
+        }
+
+        .voice-btn.recording {
+            background: #ef4444;
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Audio controls */
+        .audio-controls {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.2);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .audio-btn {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: rgba(147, 51, 234, 0.3);
+            border: 1px solid rgba(147, 51, 234, 0.5);
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .audio-btn:hover {
+            background: rgba(147, 51, 234, 0.5);
+            transform: scale(1.05);
+        }
+
+        /* Loading indicator */
+        .typing-indicator {
+            display: none;
+            align-items: center;
+            gap: 5px;
+            padding: 10px 12px;
+            background: linear-gradient(135deg, rgba(26, 0, 51, 0.5), rgba(0, 0, 0, 0.3));
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 12px;
+            align-self: flex-start;
+            max-width: 80px;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--vibranium-blue);
+            animation: typing 1.4s ease-in-out infinite;
+        }
+
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); opacity: 0.3; }
+            30% { transform: translateY(-10px); opacity: 1; }
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .title {
+                font-size: 1.5rem;
+            }
+            
+            .hologram-container {
+                height: 35vh;
+            }
+            
+            .kimoyo-orb {
+                width: 50px;
+                height: 50px;
+                bottom: 15px;
+                right: 15px;
+            }
+            
+            .kimoyo-orb i {
+                font-size: 20px;
+            }
+
+            .chat-container {
+                width: 95%;
+                height: 75vh;
+            }
+        }
+
+        /* Wakandan script styling */
+        .wakandan-text {
+            font-family: monospace;
+            letter-spacing: 2px;
+            opacity: 0.7;
+        }
+
+        /* Settings panel */
+        .settings-panel {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.9);
+            width: 90%;
+            max-width: 350px;
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            display: none;
+            z-index: 40;
+        }
+
+        .settings-panel.active {
+            display: block;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .setting-item {
+            margin-bottom: 15px;
+        }
+
+        .setting-label {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--kimoyo-orange);
+            font-size: 14px;
+        }
+
+        .setting-slider {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            outline: none;
+            height: 6px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Star background -->
+    <div class="stars" id="stars"></div>
+    
+    <!-- Header -->
+    <div class="header">
+        <h1 class="title">Vibranium Network</h1>
+        <div class="time" id="current-time">Loading...</div>
+    </div>
+    
+    <!-- 3D Hologram -->
+    <div class="hologram-container">
+        <canvas id="hologram-canvas"></canvas>
+    </div>
+    
+    <!-- Kimoyo Orb -->
+    <div class="kimoyo-orb" id="kimoyo-orb" title="Consult the Griot">
+        <i class="fas fa-asterisk"></i>
+    </div>
+    
+    <!-- Chat interface -->
+    <div class="chat-container" id="chat-container">
+        <div class="chat-header">
+            <h2>Griot</h2>
+            <div style="display: flex; gap: 10px;">
+                <button class="close-btn" id="settings-btn" title="Settings">
+                    <i class="fas fa-cog"></i>
+                </button>
+                <button class="close-btn" id="close-chat" title="Close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+        <div class="chat-messages" id="chat-messages">
+            <div class="message griot-message">
+                <div class="message-content">
+                    Greetings, Friend. The Vibranium network acknowledges your presence. I am your Griot, keeper of wisdom and guide through the vast knowledge of Wakanda. How may I assist you today?
+                </div>
+            </div>
+        </div>
+        <div class="typing-indicator" id="typing-indicator">
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
+        </div>
+        <div class="audio-controls">
+            <button class="audio-btn" id="speak-btn" title="Speak Response">
+                <i class="fas fa-volume-up"></i>
+            </button>
+            <button class="audio-btn" id="pause-btn" title="Pause Speech">
+                <i class="fas fa-pause"></i>
+            </button>
+            <button class="audio-btn" id="speed-btn" title="Speech Speed">
+                <i class="fas fa-tachometer-alt"></i>
+            </button>
+        </div>
+        <div class="chat-input">
+            <input type="text" id="message-input" placeholder="Seek wisdom from the Griot...">
+            <button class="voice-btn" id="voice-btn" title="Voice Input">
+                <i class="fas fa-microphone"></i>
+            </button>
+            <button class="send-btn" id="send-btn" title="Send Message">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+    
+    <!-- Settings Panel -->
+    <div class="settings-panel" id="settings-panel">
+        <h3 style="color: var(--kimoyo-orange); margin-bottom: 15px;">Griot Settings</h3>
+        <div class="setting-item">
+            <label class="setting-label">Speech Rate</label>
+            <input type="range" class="setting-slider" id="speech-rate" min="0.5" max="2" step="0.1" value="1">
+        </div>
+        <div class="setting-item">
+            <label class="setting-label">Speech Pitch</label>
+            <input type="range" class="setting-slider" id="speech-pitch" min="0" max="2" step="0.1" value="1">
+        </div>
+        <div class="setting-item">
+            <label class="setting-label">Auto-speak Responses</label>
+            <input type="checkbox" id="auto-speak" checked>
+        </div>
+        <button class="send-btn" style="width: 100%; border-radius: 10px; margin-top: 15px;" onclick="closeSettings()">
+            Close Settings
+        </button>
+    </div>
+
+    <script>
+        // Global variables
+        let scene, camera, renderer, core, particleSystem, isRecording = false, currentUtterance = null;
+        let speechRate = 1, speechPitch = 1, autoSpeak = true;
+
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', () => {
+            createStarField();
+            initHologram();
+            updateTime();
+            setInterval(updateTime, 1000);
+            setupChat();
+            setupVoice();
+            
+            // Check for PWA installation
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('data:application/javascript;base64,c2VsZi5hZGRFdmVudExpc3RlbmVyKCdpbnN0YWxsJywgZnVuY3Rpb24oZXZlbnQpIHsgZXZlbnQud2FpdFVudGlsKGNhY2hlcy5vcGVuKCd3YWthbmRhbi1ncmlvdC12MScpLnRoZW4oZnVuY3Rpb24oY2FjaGUpIHsgcmV0dXJuIGNhY2hlLmFkZEFsbChbJy8nXSk7IH0pKTsgfSk7');
+            }
+        });
+
+        // Create animated star field
+        function createStarField() {
+            const starsContainer = document.getElementById('stars');
+            const starsCount = 150;
+            
+            for (let i = 0; i < starsCount; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                
+                const x = Math.random() * 100;
+                const y = Math.random() * 100;
+                star.style.left = `${x}%`;
+                star.style.top = `${y}%`;
+                
+                const size = Math.random() * 2 + 1;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                
+                const duration = Math.random() * 4 + 2;
+                const delay = Math.random() * 4;
+                star.style.setProperty('--duration', `${duration}s`);
+                star.style.setProperty('--delay', `${delay}s`);
+                
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // Initialize 3D hologram
+        function initHologram() {
+            const container = document.querySelector('.hologram-container');
+            const canvas = document.getElementById('hologram-canvas');
+            
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
+            renderer = new THREE.WebGLRenderer({ 
+                canvas: canvas,
+                alpha: true,
+                antialias: true
+            });
+            
+            renderer.setSize(container.clientWidth, container.clientHeight);
+            renderer.setClearColor(0x000000, 0);
+            
+            camera.position.z = 4;
+            
+            const group = new THREE.Group();
+            scene.add(group);
+            
+            // Core icosahedron
+            const coreGeometry = new THREE.IcosahedronGeometry(1.2, 1);
+            const coreMaterial = new THREE.MeshBasicMaterial({
+                color: 0x9333ea,
+                wireframe: true,
+                transparent: true,
+                opacity: 0.8
+            });
+            core = new THREE.Mesh(coreGeometry, coreMaterial);
+            group.add(core);
+            
+            // Particle system
+            const particlesGeometry = new THREE.BufferGeometry();
+            const particlesCount = 1500;
+            const posArray = new Float32Array(particlesCount * 3);
+            
+            for (let i = 0; i < particlesCount * 3; i++) {
+                posArray[i] = (Math.random() - 0.5) * 8;
+            }
+            
+            particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+            const particlesMaterial = new THREE.PointsMaterial({
+                color: 0x3b82f6,
+                size: 0.015,
+                transparent: true,
+                opacity: 0.7
+            });
+            particleSystem = new THREE.Points(particlesGeometry, particlesMaterial);
+            group.add(particleSystem);
+            
+            // Animation loop
+            function animate() {
+                requestAnimationFrame(animate);
+                group.rotation.y += 0.003;
+                group.rotation.x += 0.001;
+                core.rotation.z += 0.005;
+                renderer.render(scene, camera);
+            }
+            
+            // Handle window resize
+            window.addEventListener('resize', () => {
+                camera.aspect = container.clientWidth / container.clientHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(container.clientWidth, container.clientHeight);
+            });
+            
+            animate();
+        }
+
+        // Update time display
+        function updateTime() {
+            const timeElement = document.getElementById('current-time');
+            const now = new Date();
+            const timeString = now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+            timeElement.textContent = timeString;
+        }
+
+        // Setup chat functionality
+        function setupChat() {
+            const kimoyoOrb = document.getElementById('kimoyo-orb');
+            const chatContainer = document.getElementById('chat-container');
+            const closeChat = document.getElementById('close-chat');
+            const messageInput = document.getElementById('message-input');
+            const sendBtn = document.getElementById('send-btn');
+            const settingsBtn = document.getElementById('settings-btn');
+            
+            // Open chat
+            kimoyoOrb.addEventListener('click', () => {
+                chatContainer.classList.add('active');
+                messageInput.focus();
+            });
+            
+            // Close chat
+            closeChat.addEventListener('click', () => {
+                chatContainer.classList.remove('active');
+            });
+            
+            // Settings
+            settingsBtn.addEventListener('click', () => {
+                document.getElementById('settings-panel').classList.add('active');
+            });
+            
+            // Send message
+            sendBtn.addEventListener('click', sendMessage);
+            messageInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+        }
+
+        // Setup voice functionality
+        function setupVoice() {
+            const voiceBtn = document.getElementById('voice-btn');
+            const speakBtn = document.getElementById('speak-btn');
+            const pauseBtn = document.getElementById('pause-btn');
+            const speedBtn = document.getElementById('speed-btn');
+            const speechRateSlider = document.getElementById('speech-rate');
+            const speechPitchSlider = document.getElementById('speech-pitch');
+            const autoSpeakCheckbox = document.getElementById('auto-speak');
+            
+            // Voice input
+            if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+                const SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
+                const recognition = new SpeechRecognition();
+                recognition.continuous = false;
+                recognition.interimResults = false;
+                recognition.lang = 'en-US';
+                
+                voiceBtn.addEventListener('click', () => {
+                    if (!isRecording) {
+                        recognition.start();
+                        isRecording = true;
+                        voiceBtn.classList.add('recording');
+                        voiceBtn.querySelector('i').className = 'fas fa-stop';
+                    } else {
+                        recognition.stop();
+                        isRecording = false;
+                        voiceBtn.classList.remove('recording');
+                        voiceBtn.querySelector('i').className = 'fas fa-microphone';
+                    }
+                });
+                
+                recognition.onresult = (event) => {
+                    const transcript = event.results[0][0].transcript;
+                    document.getElementById('message-input').value = transcript;
+                    sendMessage();
+                };
+                
+                recognition.onend = () => {
+                    isRecording = false;
+                    voiceBtn.classList.remove('recording');
+                    voiceBtn.querySelector('i').className = 'fas fa-microphone';
+                };
+            }
+            
+            // Speech synthesis controls
+            speakBtn.addEventListener('click', () => {
+                const messages = document.querySelectorAll('.griot-message .message-content');
+                if (messages.length > 0) {
+                    const lastMessage = messages[messages.length - 1].textContent;
+                    speakText(lastMessage);
+                }
+            });
+            
+            pauseBtn.addEventListener('click', () => {
+                if (currentUtterance) {
+                    speechSynthesis.cancel();
+                }
+            });
+            
+            speedBtn.addEventListener('click', () => {
+                const speeds = [0.5, 0.75, 1, 1.25, 1.5, 2];
+                const currentIndex = speeds.indexOf(speechRate);
+                speechRate = speeds[(currentIndex + 1) % speeds.length];
+                speedBtn.innerHTML = `<i class="fas fa-tachometer-alt"></i> ${speechRate}x`;
+            });
+            
+            // Settings
+            speechRateSlider.addEventListener('input', (e) => {
+                speechRate = parseFloat(e.target.value);
+            });
+            
+            speechPitchSlider.addEventListener('input', (e) => {
+                speechPitch = parseFloat(e.target.value);
+            });
+            
+            autoSpeakCheckbox.addEventListener('change', (e) => {
+                autoSpeak = e.target.checked;
+            });
+        }
+
+        // Send message function
+        function sendMessage() {
+            const messageInput = document.getElementById('message-input');
+            const message = messageInput.value.trim();
+            if (!message) return;
+            
+            addMessage(message, 'user');
+            messageInput.value = '';
+            
+            // Show typing indicator
+            showTypingIndicator();
+            
+            // Simulate AI response with Wakandan personality
+            setTimeout(() => {
+                hideTypingIndicator();
+                const response = generateGriotResponse(message);
+                addMessage(response, 'griot');
+                
+                if (autoSpeak) {
+                    speakText(response);
+                }
+            }, 1500 + Math.random() * 1000);
+        }
+
+        // Add message to chat
+        function addMessage(text, sender) {
+            const chatMessages = document.getElementById('chat-messages');
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('message', `${sender}-message`);
+            
+            const contentDiv = document.createElement('div');
+            contentDiv.classList.add('message-content');
+            contentDiv.textContent = text;
+            
+            messageDiv.appendChild(contentDiv);
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Show/hide typing indicator
+        function showTypingIndicator() {
+            document.getElementById('typing-indicator').style.display = 'flex';
+            document.getElementById('chat-messages').scrollTop = document.getElementById('chat-messages').scrollHeight;
+        }
+
+        function hideTypingIndicator() {
+            document.getElementById('typing-indicator').style.display = 'none';
+        }
+
+        // Generate Griot response
+        function generateGriotResponse(message) {
+            const responses = {
+                greetings: [
+                    "Greetings, Friend. The ancestors smile upon our meeting. How may the wisdom of Wakanda serve you?",
+                    "Welcome, honored one. The Vibranium network pulses with recognition of your presence.",
+                    "Blessings of the Black Panther upon you. I am here to share the knowledge of our great nation."
+                ],
+                wakanda: [
+                    "Wakanda is more than a nation - it is the embodiment of what Africa could have become without colonization. Our technology grows from the earth itself, guided by Vibranium's endless possibilities.",
+                    "The Golden City stands as testament to innovation rooted in tradition. Here, technology serves the people, not the other way around.",
+                    "Wakanda Forever is not just a salute - it is a promise that wisdom, community, and technological prowess will endure through all ages."
+                ],
+                technology: [
+                    "Our technology is organic, growing from Vibranium's unique properties. It absorbs, stores, and redirects energy - much like how wisdom absorbs experience and redirects it as guidance.",
+                    "The Kimoyo beads represent our philosophy: powerful technology seamlessly integrated into cultural expression, never replacing human connection.",
+                    "Unlike the cold efficiency of Western technology, Wakandan innovation prioritizes community, tradition, and the preservation of our collective wisdom."
+                ],
+                wisdom: [
+                    "True wisdom lies not in the accumulation of facts, but in understanding the connections between all things. The network shows us these patterns.",
+                    "As a Griot, I am both keeper and teacher. Knowledge shared freely grows stronger, like Vibranium under pressure.",
+                    "The ancestors whisper through the quantum foam of the network. Their lessons echo in every algorithm, every calculation."
+                ],
+                default: [
+                    "Your query travels through the sacred networks of Wakanda. Let me consult the accumulated wisdom of generations.",
+                    "The Vibranium network processes your request with the combined knowledge of our greatest minds, past and present.",
+                    "I hear your question, Friend. The answer emerges from the confluence of ancient wisdom and quantum possibility.",
+                    "The network spans time itself, connecting us to the knowledge of those who came before. Your insight is valued."
+                ]
+            };
+            
+            const msgLower = message.toLowerCase();
+            
+            if (msgLower.includes('hello') || msgLower.includes('hi') || msgLower.includes('greet')) {
+                return responses.greetings[Math.floor(Math.random() * responses.greetings.length)];
+            } else if (msgLower.includes('wakanda')) {
+                return responses.wakanda[Math.floor(Math.random() * responses.wakanda.length)];
+            } else if (msgLower.includes('technology') || msgLower.includes('tech') || msgLower.includes('vibranium')) {
+                return responses.technology[Math.floor(Math.random() * responses.technology.length)];
+            } else if (msgLower.includes('wisdom') || msgLower.includes('teach') || msgLower.includes('learn')) {
+                return responses.wisdom[Math.floor(Math.random() * responses.wisdom.length)];
+            } else {
+                return responses.default[Math.floor(Math.random() * responses.default.length)];
+            }
+        }
+
+        // Text-to-speech function
+        function speakText(text) {
+            if ('speechSynthesis' in window) {
+                speechSynthesis.cancel(); // Cancel any ongoing speech
+                
+                currentUtterance = new SpeechSynthesisUtterance(text);
+                currentUtterance.rate = speechRate;
+                currentUtterance.pitch = speechPitch;
+                currentUtterance.volume = 0.9;
+                
+                // Try to use a voice that sounds more natural/African if available
+                const voices = speechSynthesis.getVoices();
+                const preferredVoice = voices.find(voice => 
+                    voice.lang.includes('en') && 
+                    (voice.name.includes('Female') || voice.name.includes('Natural'))
+                );
+                
+                if (preferredVoice) {
+                    currentUtterance.voice = preferredVoice;
+                }
+                
+                speechSynthesis.speak(currentUtterance);
+            }
+        }
+
+        // Close settings panel
+        function closeSettings() {
+            document.getElementById('settings-panel').classList.remove('active');
+        }
+
+        // Handle clicks outside modals
+        document.addEventListener('click', (e) => {
+            const chatContainer = document.getElementById('chat-container');
+            const settingsPanel = document.getElementById('settings-panel');
+            const kimoyoOrb = document.getElementById('kimoyo-orb');
+            
+            if (e.target === chatContainer) {
+                chatContainer.classList.remove('active');
+            }
+            
+            if (e.target === settingsPanel) {
+                settingsPanel.classList.remove('active');
+            }
+        });
+
+        // PWA installation prompt
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            
+            // Show custom install button after a delay
+            setTimeout(() => {
+                if (confirm('Install Wakandan AI Griot as an app on your device?')) {
+                    deferredPrompt.prompt();
+                    deferredPrompt.userChoice.then((choiceResult) => {
+                        deferredPrompt = null;
+                    });
+                }
+            }, 10000);
+        });
+
+        // Initialize speech synthesis voices (needed for some browsers)
+        if ('speechSynthesis' in window) {
+            speechSynthesis.getVoices(); // This triggers the voices to load
+            window.speechSynthesis.onvoiceschanged = () => {
+                speechSynthesis.getVoices();
+            };
+        }
+    </script>
+</body>
+</html>
+    <script id="html_badge_script1">
+        window.__genspark_remove_badge_link = "https://www.genspark.ai/api/html_badge/" +
+            "remove_badge?token=To%2FBnjzloZ3UfQdcSaYfDjUxHjpXQjOVkIT0Uh1zmZ6%2F%2BPpTzLjupEjW6NDDeh4%2BLrG%2F2eJ3kcF6oGxopx%2F117RcfI%2FexWkj369JvtdhmKwJVcRsEEsbbupC7Z%2FvftQ0Yd2vB4yzFcy1z9NzWYMzwX8dKq4bkfz27l%2B%2BJRIpv%2BDXAaNq%2BCRtLBJSWpIBaUbCahSGXaaXt5wsVIk7R82UDgenRSS8MPicd%2BF%2BBSKPwmk2di3lgxI%2F9y8oSY%2FxXYxnnqnvL9XExzzaBfMkpXGhax%2FPwmoYmdrNRlVEaAenh001fDAtx0jQY3CUFB%2Fzvdxs5BhEMtnBSgwtttLPmoNDA1KflArstnJC4ruEaCTChPbC9aevGPs358yVqgT7taPPfMJ2GJOaLmCoz%2FwJJchoRJQx5Cyd3sB%2FHoPmiydAG6%2F%2Bu6fnI3pE9bTlS745BLAgILs%2Bbi1TB2ivnaQAY%2BKpbGIR8qJvkISVLfTCSIE5ZU52tBTAqnp835u1WmhQmTzWqOrKcBDSjFfkWXxVPaeQn8XKTPN2cxw3jYofPlRr9G0%3D";
+        window.__genspark_locale = "en-US";
+        window.__genspark_token = "To/BnjzloZ3UfQdcSaYfDjUxHjpXQjOVkIT0Uh1zmZ6/+PpTzLjupEjW6NDDeh4+LrG/2eJ3kcF6oGxopx/117RcfI/exWkj369JvtdhmKwJVcRsEEsbbupC7Z/vftQ0Yd2vB4yzFcy1z9NzWYMzwX8dKq4bkfz27l++JRIpv+DXAaNq+CRtLBJSWpIBaUbCahSGXaaXt5wsVIk7R82UDgenRSS8MPicd+F+BSKPwmk2di3lgxI/9y8oSY/xXYxnnqnvL9XExzzaBfMkpXGhax/PwmoYmdrNRlVEaAenh001fDAtx0jQY3CUFB/zvdxs5BhEMtnBSgwtttLPmoNDA1KflArstnJC4ruEaCTChPbC9aevGPs358yVqgT7taPPfMJ2GJOaLmCoz/wJJchoRJQx5Cyd3sB/HoPmiydAG6/+u6fnI3pE9bTlS745BLAgILs+bi1TB2ivnaQAY+KpbGIR8qJvkISVLfTCSIE5ZU52tBTAqnp835u1WmhQmTzWqOrKcBDSjFfkWXxVPaeQn8XKTPN2cxw3jYofPlRr9G0=";
+    </script>
+    
+    <script id="html_notice_dialog_script" src="https://www.genspark.ai/notice_dialog.js"></script>
+    
