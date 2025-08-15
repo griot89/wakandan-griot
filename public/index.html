@@ -468,7 +468,10 @@
     <div class="chat-container" id="chat-container">
         <div class="chat-header">
             <h2>Griot</h2>
-            <div style="display: flex; gap: 10px;">
+            <div style="display: flex; gap: 10px; align-items: center;">
+                <span id="voice-indicator" style="font-size: 10px; color: var(--kimoyo-orange); display: none;">
+                    <i class="fas fa-microphone-alt"></i> ElevenLabs
+                </span>
                 <button class="close-btn" id="settings-btn" title="Settings">
                     <i class="fas fa-cog"></i>
                 </button>
@@ -525,6 +528,25 @@
         <div class="setting-item">
             <label class="setting-label">Auto-speak Responses</label>
             <input type="checkbox" id="auto-speak" checked>
+        </div>
+        <div class="setting-item" style="margin-top: 20px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.1);">
+            <label class="setting-label" style="display: flex; align-items: center; gap: 5px;">
+                <i class="fas fa-microphone-alt"></i> ElevenLabs Voice
+            </label>
+            <p style="font-size: 11px; color: rgba(255,255,255,0.6); margin: 5px 0 10px 0;">
+                Voice ID: Z8dg0fyk7p6js7cQ7lgi<br>
+                <span style="color: var(--vibranium-blue);">Premium voice synthesis active</span>
+            </p>
+            <div style="padding: 10px; background: rgba(147, 51, 234, 0.1); border-radius: 8px; border: 1px solid rgba(147, 51, 234, 0.3);">
+                <p style="font-size: 12px; color: var(--wakandan-gold);">
+                    <i class="fas fa-info-circle"></i> To enable ElevenLabs voice:
+                </p>
+                <ol style="font-size: 11px; margin: 5px 0 0 20px; color: rgba(255,255,255,0.8);">
+                    <li>Add your API key to server .env file</li>
+                    <li>Restart the server</li>
+                    <li>Voice will activate automatically</li>
+                </ol>
+            </div>
         </div>
         <button class="send-btn" style="width: 100%; border-radius: 10px; margin-top: 15px;" onclick="closeSettings()">
             Close Settings
@@ -889,8 +911,68 @@
             }
         }
 
-        // Text-to-speech function
-        function speakText(text) {
+        // Text-to-speech function with ElevenLabs integration
+        async function speakText(text) {
+            try {
+                // First, try to use ElevenLabs API
+                const response = await fetch('/api/tts/elevenlabs', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ 
+                        text: text,
+                        voiceSettings: {
+                            stability: 0.75,
+                            similarity_boost: 0.75,
+                            style: 0.5,
+                            use_speaker_boost: true
+                        }
+                    })
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    
+                    if (data.audio) {
+                        // Play the ElevenLabs audio
+                        const audio = new Audio(data.audio);
+                        audio.playbackRate = speechRate;
+                        audio.volume = 0.9;
+                        
+                        // Show visual feedback
+                        const speakBtn = document.getElementById('speak-btn');
+                        const voiceIndicator = document.getElementById('voice-indicator');
+                        
+                        speakBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+                        speakBtn.style.color = 'var(--kimoyo-orange)';
+                        voiceIndicator.style.display = 'inline-block';
+                        
+                        audio.play();
+                        
+                        audio.onended = () => {
+                            speakBtn.style.color = '';
+                            setTimeout(() => {
+                                voiceIndicator.style.display = 'none';
+                            }, 2000);
+                        };
+                        
+                        console.log('Using ElevenLabs voice:', data.voiceId);
+                        return;
+                    }
+                }
+                
+                // If API returns an error about configuration, log it
+                const errorData = await response.json().catch(() => null);
+                if (errorData?.message) {
+                    console.log('ElevenLabs:', errorData.message);
+                }
+                
+            } catch (error) {
+                console.log('ElevenLabs not available, using browser TTS');
+            }
+            
+            // Fallback to browser's speech synthesis
             if ('speechSynthesis' in window) {
                 speechSynthesis.cancel(); // Cancel any ongoing speech
                 

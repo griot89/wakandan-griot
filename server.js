@@ -2,9 +2,15 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const fs = require('fs');
+const axios = require('axios');
+require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+// ElevenLabs configuration
+const ELEVENLABS_API_KEY = process.env.ELEVENLABS_API_KEY;
+const ELEVENLABS_VOICE_ID = process.env.ELEVENLABS_VOICE_ID || 'Z8dg0fyk7p6js7cQ7lgi';
 
 // Middleware
 app.use(cors());
@@ -19,6 +25,64 @@ app.get('/health', (req, res) => {
         timestamp: new Date().toISOString(),
         vibraniumLevel: '100%'
     });
+});
+
+// API endpoint for text-to-speech using ElevenLabs
+app.post('/api/tts/elevenlabs', async (req, res) => {
+    const { text, voiceSettings = {} } = req.body;
+    
+    if (!text) {
+        return res.status(400).json({ error: 'Text is required' });
+    }
+    
+    // If no API key is configured, return a message
+    if (!ELEVENLABS_API_KEY || ELEVENLABS_API_KEY === 'your_api_key_here') {
+        return res.status(503).json({ 
+            error: 'ElevenLabs API not configured',
+            message: 'Please add your ElevenLabs API key to the .env file',
+            voiceId: ELEVENLABS_VOICE_ID
+        });
+    }
+    
+    try {
+        // ElevenLabs API request
+        const response = await axios.post(
+            `https://api.elevenlabs.io/v1/text-to-speech/${ELEVENLABS_VOICE_ID}`,
+            {
+                text: text,
+                model_id: 'eleven_multilingual_v2',
+                voice_settings: {
+                    stability: voiceSettings.stability || 0.75,
+                    similarity_boost: voiceSettings.similarity_boost || 0.75,
+                    style: voiceSettings.style || 0.5,
+                    use_speaker_boost: true
+                }
+            },
+            {
+                headers: {
+                    'Accept': 'audio/mpeg',
+                    'Content-Type': 'application/json',
+                    'xi-api-key': ELEVENLABS_API_KEY
+                },
+                responseType: 'arraybuffer'
+            }
+        );
+        
+        // Convert to base64 for easier client-side handling
+        const audioBase64 = Buffer.from(response.data).toString('base64');
+        
+        res.json({
+            success: true,
+            audio: `data:audio/mpeg;base64,${audioBase64}`,
+            voiceId: ELEVENLABS_VOICE_ID
+        });
+    } catch (error) {
+        console.error('ElevenLabs API error:', error.response?.data || error.message);
+        res.status(500).json({ 
+            error: 'Failed to generate speech',
+            message: error.response?.data?.detail?.message || error.message
+        });
+    }
 });
 
 // API endpoint for Griot wisdom (can be extended with AI integration)
@@ -79,6 +143,8 @@ app.listen(PORT, '0.0.0.0', () => {
     console.log('║  API Endpoints:                                ║');
     console.log('║    - GET  /health                              ║');
     console.log('║    - POST /api/griot/wisdom                    ║');
+    console.log('║    - POST /api/tts/elevenlabs                  ║');
+    console.log('║  ElevenLabs Voice ID: ' + ELEVENLABS_VOICE_ID.substring(0, 8) + '...       ║');
     console.log('╚════════════════════════════════════════════════╝');
     console.log('\nWakanda Forever! 🐾\n');
 });
