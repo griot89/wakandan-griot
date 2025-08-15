@@ -1,0 +1,25 @@
+{
+  "name": "wakandan-griot",
+  "version": "1.0.0",
+  "description": "Wakandan AI Griot - A sophisticated Afrofuturistic AI assistant with holographic interface",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "wakanda",
+    "ai",
+    "griot",
+    "assistant",
+    "hologram",
+    "afrofuturism"
+  ],
+  "author": "Wakandan Tech Division",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "pm2": "^6.0.8"
+  }
+}
