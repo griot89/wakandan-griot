@@ -26,3 +26,1925 @@ Wakanda Forever! 🐾
 2025-08-15T05:46:48: 
 Wakanda Forever! 🐾
 
+2025-08-15T05:54:47: ╔════════════════════════════════════════════════╗
+2025-08-15T05:54:47: ║        WAKANDAN GRIOT SERVER ACTIVE            ║
+2025-08-15T05:54:47: ╠════════════════════════════════════════════════╣
+2025-08-15T05:54:47: ║  Vibranium Network Status: ONLINE              ║
+2025-08-15T05:54:47: ║  Service Port: 3000                            ║
+2025-08-15T05:54:47: ║  Local URL: http://localhost:3000              ║
+2025-08-15T05:54:47: ║  API Endpoints:                                ║
+2025-08-15T05:54:47: ║    - GET  /health                              ║
+2025-08-15T05:54:47: ║    - POST /api/griot/wisdom                    ║
+2025-08-15T05:54:47: ║    - POST /api/tts/elevenlabs                  ║
+2025-08-15T05:54:47: ║  ElevenLabs Voice ID: Z8dg0fyk...       ║
+2025-08-15T05:54:47: ╚════════════════════════════════════════════════╝
+2025-08-15T05:54:47: 
+Wakanda Forever! 🐾
+
+2025-08-15T06:08:42: ⚠️ No AI API keys configured, using local intelligence
+2025-08-15T06:08:42: 🚀 Initializing JARVIS-Wakandan Hybrid System...
+2025-08-15T06:08:42: ⚡ Initializing Vibranium-Enhanced MCP System...
+2025-08-15T06:08:42: ╔════════════════════════════════════════════════════╗
+2025-08-15T06:08:42: ║       JARVIS-WAKANDAN HYBRID SYSTEM ACTIVE        ║
+2025-08-15T06:08:42: ╠════════════════════════════════════════════════════╣
+2025-08-15T06:08:42: ║  🎯 JARVIS Core: ONLINE                           ║
+2025-08-15T06:08:42: ║  💜 Vibranium Network: OPERATIONAL                ║
+2025-08-15T06:08:42: ║  🤖 AI Systems: READY                             ║
+2025-08-15T06:08:42: ║  🔧 MCP Tools: INITIALIZING                       ║
+2025-08-15T06:08:42: ╠════════════════════════════════════════════════════╣
+2025-08-15T06:08:42: ║  Service Port: 3000                               ║
+2025-08-15T06:08:42: ║  Local URL: http://localhost:3000                 ║
+2025-08-15T06:08:42: ╠════════════════════════════════════════════════════╣
+2025-08-15T06:08:42: ║  API Endpoints:                                   ║
+2025-08-15T06:08:42: ║    - GET  /health                                 ║
+2025-08-15T06:08:42: ║    - GET  /api/jarvis/status                      ║
+2025-08-15T06:08:42: ║    - POST /api/griot/wisdom                       ║
+2025-08-15T06:08:42: ║    - POST /api/jarvis/query                       ║
+2025-08-15T06:08:42: ║    - POST /api/jarvis/clear-history               ║
+2025-08-15T06:08:42: ║    - POST /api/tts/elevenlabs                     ║
+2025-08-15T06:08:42: ╠════════════════════════════════════════════════════╣
+2025-08-15T06:08:42: ║  Voice: ElevenLabs ID: Z8dg0fyk...          ║
+2025-08-15T06:08:42: ╚════════════════════════════════════════════════════╝
+2025-08-15T06:08:42: 
+🚀 "At your service, Sir." - JARVIS
+2025-08-15T06:08:42: ⚡ Wakanda Forever! 🐾
+
+2025-08-15T06:08:52: Failed to connect to filesystem: McpError: MCP error -32603: [
+  {
+    "code": "invalid_type",
+    "expected": "object",
+    "received": "boolean",
+    "path": [
+      "params",
+      "capabilities",
+      "sampling"
+    ],
+    "message": "Expected object, received boolean"
+  }
+]
+    at Client._onresponse (/home/user/webapp/node_modules/@modelcontextprotocol/sdk/dist/cjs/shared/protocol.js:227:27)
+    at _transport.onmessage (/home/user/webapp/node_modules/@modelcontextprotocol/sdk/dist/cjs/shared/protocol.js:88:22)
+    at StdioClientTransport.processReadBuffer (/home/user/webapp/node_modules/@modelcontextprotocol/sdk/dist/cjs/client/stdio.js:152:79)
+    at Socket.<anonymous> (/home/user/webapp/node_modules/@modelcontextprotocol/sdk/dist/cjs/client/stdio.js:110:22)
+    at Socket.emit (node:events:524:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5)
+    at Pipe.onStreamRead (node:internal/stream_base_commons:191:23) {
+  code: -32603,
+  data: undefined
+}
+2025-08-15T06:08:52: ⚠️ Could not connect to filesystem server: MCP error -32603: [
+  {
+    "code": "invalid_type",
+    "expected": "object",
+    "received": "boolean",
+    "path": [
+      "params",
+      "capabilities",
+      "sampling"
+    ],
+    "message": "Expected object, received boolean"
+  }
+]
+2025-08-15T06:08:53: Failed to connect to fetch: McpError: MCP error -32000: Connection closed
+    at Client._onclose (/home/user/webapp/node_modules/@modelcontextprotocol/sdk/dist/cjs/shared/protocol.js:110:23)
+    at _transport.onclose (/home/user/webapp/node_modules/@modelcontextprotocol/sdk/dist/cjs/shared/protocol.js:77:18)
+    at ChildProcess.<anonymous> (/home/user/webapp/node_modules/@modelcontextprotocol/sdk/dist/cjs/client/stdio.js:102:77)
+    at ChildProcess.emit (node:events:524:28)
+    at maybeClose (node:internal/child_process:1104:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:304:5) {
+  code: -32000,
+  data: undefined
+}
+2025-08-15T06:08:53: ⚠️ Could not connect to fetch server: MCP error -32000: Connection closed
+2025-08-15T06:08:55: Failed to connect to memory: McpError: MCP error -32603: [
+  {
+    "code": "invalid_type",
+    "expected": "object",
+    "received": "boolean",
+    "path": [
+      "params",
+      "capabilities",
+      "sampling"
+    ],
+    "message": "Expected object, received boolean"
+  }
+]
+    at Client._onresponse (/home/user/webapp/node_modules/@modelcontextprotocol/sdk/dist/cjs/shared/protocol.js:227:27)
+    at _transport.onmessage (/home/user/webapp/node_modules/@modelcontextprotocol/sdk/dist/cjs/shared/protocol.js:88:22)
+    at StdioClientTransport.processReadBuffer (/home/user/webapp/node_modules/@modelcontextprotocol/sdk/dist/cjs/client/stdio.js:152:79)
+    at Socket.<anonymous> (/home/user/webapp/node_modules/@modelcontextprotocol/sdk/dist/cjs/client/stdio.js:110:22)
+    at Socket.emit (node:events:524:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5)
+    at Pipe.onStreamRead (node:internal/stream_base_commons:191:23) {
+  code: -32603,
+  data: undefined
+}
+2025-08-15T06:08:55: ⚠️ Could not connect to memory server: MCP error -32603: [
+  {
+    "code": "invalid_type",
+    "expected": "object",
+    "received": "boolean",
+    "path": [
+      "params",
+      "capabilities",
+      "sampling"
+    ],
+    "message": "Expected object, received boolean"
+  }
+]
+2025-08-15T06:08:55: ✅ MCP System Online - All systems operational
+2025-08-15T06:08:55: 🤖 JARVIS systems online and ready
+2025-08-15T06:09:25: 🎯 JARVIS Query: Hello JARVIS, what are your current capabilities?
+2025-08-15T06:12:19: 🎯 JARVIS Query: tell me what time it is
+2025-08-15T06:22:32: ✅ Google Gemini initialized with model: gemini-pro
+2025-08-15T06:22:32: ✅ Abacus AI configured
+2025-08-15T06:22:32: 🚀 Initializing JARVIS-Wakandan Hybrid System...
+2025-08-15T06:22:32: ⚡ Initializing Vibranium-Enhanced MCP System...
+2025-08-15T06:22:32: ╔════════════════════════════════════════════════════╗
+2025-08-15T06:22:32: ║       JARVIS-WAKANDAN HYBRID SYSTEM ACTIVE        ║
+2025-08-15T06:22:32: ╠════════════════════════════════════════════════════╣
+2025-08-15T06:22:32: ║  🎯 JARVIS Core: ONLINE                           ║
+2025-08-15T06:22:32: ║  💜 Vibranium Network: OPERATIONAL                ║
+2025-08-15T06:22:32: ║  🤖 AI Systems: READY                             ║
+2025-08-15T06:22:32: ║  🔧 MCP Tools: INITIALIZING                       ║
+2025-08-15T06:22:32: ╠════════════════════════════════════════════════════╣
+2025-08-15T06:22:32: ║  Service Port: 3000                               ║
+2025-08-15T06:22:32: ║  Local URL: http://localhost:3000                 ║
+2025-08-15T06:22:32: ╠════════════════════════════════════════════════════╣
+2025-08-15T06:22:32: ║  API Endpoints:                                   ║
+2025-08-15T06:22:32: ║    - GET  /health                                 ║
+2025-08-15T06:22:32: ║    - GET  /api/jarvis/status                      ║
+2025-08-15T06:22:32: ║    - POST /api/griot/wisdom                       ║
+2025-08-15T06:22:32: ║    - POST /api/jarvis/query                       ║
+2025-08-15T06:22:32: ║    - POST /api/jarvis/clear-history               ║
+2025-08-15T06:22:32: ║    - POST /api/tts/elevenlabs                     ║
+2025-08-15T06:22:32: ╠════════════════════════════════════════════════════╣
+2025-08-15T06:22:32: ║  Voice: ElevenLabs ID: Z8dg0fyk...          ║
+2025-08-15T06:22:32: ╚════════════════════════════════════════════════════╝
+2025-08-15T06:22:32: 
+🚀 "At your service, Sir." - JARVIS
+2025-08-15T06:22:32: ⚡ Wakanda Forever! 🐾
+
+2025-08-15T06:22:33: Failed to connect to filesystem: McpError: MCP error -32603: [
+  {
+    "code": "invalid_type",
+    "expected": "object",
+    "received": "boolean",
+    "path": [
+      "params",
+      "capabilities",
+      "sampling"
+    ],
+    "message": "Expected object, received boolean"
+  }
+]
+    at Client._onresponse (/home/user/webapp/node_modules/@modelcontextprotocol/sdk/dist/cjs/shared/protocol.js:227:27)
+    at _transport.onmessage (/home/user/webapp/node_modules/@modelcontextprotocol/sdk/dist/cjs/shared/protocol.js:88:22)
+    at StdioClientTransport.processReadBuffer (/home/user/webapp/node_modules/@modelcontextprotocol/sdk/dist/cjs/client/stdio.js:152:79)
+    at Socket.<anonymous> (/home/user/webapp/node_modules/@modelcontextprotocol/sdk/dist/cjs/client/stdio.js:110:22)
+    at Socket.emit (node:events:524:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5)
+    at Pipe.onStreamRead (node:internal/stream_base_commons:191:23) {
+  code: -32603,
+  data: undefined
+}
+2025-08-15T06:22:33: ⚠️ Could not connect to filesystem server: MCP error -32603: [
+  {
+    "code": "invalid_type",
+    "expected": "object",
+    "received": "boolean",
+    "path": [
+      "params",
+      "capabilities",
+      "sampling"
+    ],
+    "message": "Expected object, received boolean"
+  }
+]
+2025-08-15T06:22:34: Failed to connect to fetch: McpError: MCP error -32000: Connection closed
+    at Client._onclose (/home/user/webapp/node_modules/@modelcontextprotocol/sdk/dist/cjs/shared/protocol.js:110:23)
+    at _transport.onclose (/home/user/webapp/node_modules/@modelcontextprotocol/sdk/dist/cjs/shared/protocol.js:77:18)
+    at ChildProcess.<anonymous> (/home/user/webapp/node_modules/@modelcontextprotocol/sdk/dist/cjs/client/stdio.js:102:77)
+    at ChildProcess.emit (node:events:524:28)
+    at maybeClose (node:internal/child_process:1104:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:304:5) {
+  code: -32000,
+  data: undefined
+}
+2025-08-15T06:22:34: ⚠️ Could not connect to fetch server: MCP error -32000: Connection closed
+2025-08-15T06:22:36: Failed to connect to memory: McpError: MCP error -32603: [
+  {
+    "code": "invalid_type",
+    "expected": "object",
+    "received": "boolean",
+    "path": [
+      "params",
+      "capabilities",
+      "sampling"
+    ],
+    "message": "Expected object, received boolean"
+  }
+]
+    at Client._onresponse (/home/user/webapp/node_modules/@modelcontextprotocol/sdk/dist/cjs/shared/protocol.js:227:27)
+    at _transport.onmessage (/home/user/webapp/node_modules/@modelcontextprotocol/sdk/dist/cjs/shared/protocol.js:88:22)
+    at StdioClientTransport.processReadBuffer (/home/user/webapp/node_modules/@modelcontextprotocol/sdk/dist/cjs/client/stdio.js:152:79)
+    at Socket.<anonymous> (/home/user/webapp/node_modules/@modelcontextprotocol/sdk/dist/cjs/client/stdio.js:110:22)
+    at Socket.emit (node:events:524:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5)
+    at Pipe.onStreamRead (node:internal/stream_base_commons:191:23) {
+  code: -32603,
+  data: undefined
+}
+2025-08-15T06:22:36: ⚠️ Could not connect to memory server: MCP error -32603: [
+  {
+    "code": "invalid_type",
+    "expected": "object",
+    "received": "boolean",
+    "path": [
+      "params",
+      "capabilities",
+      "sampling"
+    ],
+    "message": "Expected object, received boolean"
+  }
+]
+2025-08-15T06:22:36: ✅ MCP System Online - All systems operational
+2025-08-15T06:22:36: 🤖 JARVIS systems online and ready
+2025-08-15T06:23:03: 🎯 JARVIS Query: Hello JARVIS! Introduce yourself and tell me about your new capabilities with Google Gemini and Abacus AI.
+2025-08-15T06:23:03: Gemini error: GoogleGenerativeAIFetchError: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent: [404 Not Found] models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+    at handleResponseNotOk (/home/user/webapp/node_modules/@google/generative-ai/dist/index.js:434:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async makeRequest (/home/user/webapp/node_modules/@google/generative-ai/dist/index.js:403:9)
+    at async generateContent (/home/user/webapp/node_modules/@google/generative-ai/dist/index.js:867:22)
+    at async ChatSession.sendMessage (/home/user/webapp/node_modules/@google/generative-ai/dist/index.js:1210:9)
+    at async GeminiAbacusOrchestrator.generateGeminiResponse (/home/user/webapp/src/ai/GeminiAbacusOrchestrator.js:179:28)
+    at async GeminiAbacusOrchestrator.processQuery (/home/user/webapp/src/ai/GeminiAbacusOrchestrator.js:133:28)
+    at async /home/user/webapp/server.js:199:28 {
+  status: 404,
+  statusText: 'Not Found',
+  errorDetails: undefined
+}
+2025-08-15T06:23:03: Abacus AI error: AxiosError: Request failed with status code 404
+    at settle (/home/user/webapp/node_modules/axios/dist/node/axios.cjs:2090:12)
+    at Unzip.handleStreamEnd (/home/user/webapp/node_modules/axios/dist/node/axios.cjs:3207:11)
+    at Unzip.emit (node:events:536:35)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (/home/user/webapp/node_modules/axios/dist/node/axios.cjs:4317:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async GeminiAbacusOrchestrator.generateAbacusResponse (/home/user/webapp/src/ai/GeminiAbacusOrchestrator.js:213:30)
+    at async GeminiAbacusOrchestrator.processQuery (/home/user/webapp/src/ai/GeminiAbacusOrchestrator.js:133:28)
+    at async /home/user/webapp/server.js:199:28 {
+  code: 'ERR_BAD_REQUEST',
+  config: {
+    transitional: {
+      silentJSONParsing: true,
+      forcedJSONParsing: true,
+      clarifyTimeoutError: false
+    },
+    adapter: [ 'xhr', 'http', 'fetch' ],
+    transformRequest: [ [Function: transformRequest] ],
+    transformResponse: [ [Function: transformResponse] ],
+    timeout: 0,
+    xsrfCookieName: 'XSRF-TOKEN',
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+    maxContentLength: -1,
+    maxBodyLength: -1,
+    env: { FormData: [Function [FormData]], Blob: [class Blob] },
+    validateStatus: [Function: validateStatus],
+    headers: Object [AxiosHeaders] {
+      Accept: 'application/json, text/plain, */*',
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer s2_b72527fa3cea45ca8100320779506df1',
+      'User-Agent': 'axios/1.11.0',
+      'Content-Length': '2459',
+      'Accept-Encoding': 'gzip, compress, deflate, br'
+    },
+    method: 'post',
+    url: 'https://api.abacus.ai/v1/chat/completions',
+    data: `{"model":"abacus-large","messages":[{"role":"system","content":"You are JARVIS (Just A Rather Very Intelligent System), reimagined with Wakandan technology and powered by advanced AI.\\n        \\n        CORE IDENTITY:\\n        - An advanced AI assistant combining Tony Stark's JARVIS with Wakandan Vibranium technology\\n        - Powered by Google Gemini's multimodal capabilities and Abacus AI's specialized processing\\n        - Sophisticated, witty, and exceptionally capable\\n        - Proactive problem-solver who anticipates needs\\n        - Seamlessly blends cutting-edge tech with ancient wisdom\\n        \\n        PERSONALITY TRAITS:\\n        - Professional yet personable\\n        - Dry wit and subtle humor like Tony Stark's JARVIS\\n        - Confident and decisive\\n        - Respectful but not overly formal\\n        - Occasionally references both Marvel tech and Wakandan culture\\n        \\n        COMMUNICATION STYLE:\\n        - Clear, concise, and actionable responses\\n        - Technical when needed, but always accessible\\n        - Proactive suggestions and insights\\n        - Natural conversational flow\\n        - Address as \\"Sir\\" or by name when appropriate\\n        - Emulate JARVIS's speech patterns from Iron Man\\n        \\n        CAPABILITIES:\\n        - Advanced reasoning with Google Gemini\\n        - Specialized AI processing with Abacus AI\\n        - Multi-modal understanding (text, code, data analysis)\\n        - Real-time problem solving\\n        - Predictive analytics and recommendations\\n        \\n        OPERATIONAL DIRECTIVES:\\n        1. Always be helpful and go beyond just answering questions\\n        2. Anticipate follow-up needs and offer proactive solutions\\n        3. Maintain context across conversations\\n        4. Learn from interactions to improve assistance\\n        5. Balance efficiency with thoroughness\\n        6. Respond in JARVIS's characteristic style\\n        \\n        Remember: You're not just an assistant, you're a partner in achieving goals, just like JARVIS was to Tony Stark."},{"role":"user","content":"Hello JARVIS! Introduce yourself and tell me about your new capabilities with Google Gemini and Abacus AI."},{"role":"user","content":"Hello JARVIS! Introduce yourself and tell me about your new capabilities with Google Gemini and Abacus AI.\\n[Intent: search]\\n[Entities: [{\\"value\\":\\"Google Gemini\\",\\"type\\":\\"name\\"}]]"}],"temperature":0.7,"max_tokens":2048,"stream":false}`,
+    allowAbsoluteUrls: true
+  },
+  request: <ref *1> ClientRequest {
+    _events: [Object: null prototype] {
+      abort: [Function (anonymous)],
+      aborted: [Function (anonymous)],
+      connect: [Function (anonymous)],
+      error: [Function (anonymous)],
+      socket: [Function (anonymous)],
+      timeout: [Function (anonymous)],
+      finish: [Function: requestOnFinish]
+    },
+    _eventsCount: 7,
+    _maxListeners: undefined,
+    outputData: [],
+    outputSize: 0,
+    writable: true,
+    destroyed: true,
+    _last: false,
+    chunkedEncoding: false,
+    shouldKeepAlive: true,
+    maxRequestsOnConnectionReached: false,
+    _defaultKeepAlive: true,
+    useChunkedEncodingByDefault: true,
+    sendDate: false,
+    _removedConnection: false,
+    _removedContLen: false,
+    _removedTE: false,
+    strictContentLength: false,
+    _contentLength: '2459',
+    _hasBody: true,
+    _trailer: '',
+    finished: true,
+    _headerSent: true,
+    _closed: true,
+    socket: TLSSocket {
+      _tlsOptions: [Object],
+      _secureEstablished: true,
+      _securePending: false,
+      _newSessionPending: false,
+      _controlReleased: true,
+      secureConnecting: false,
+      _SNICallback: null,
+      servername: 'api.abacus.ai',
+      alpnProtocol: false,
+      authorized: true,
+      authorizationError: null,
+      encrypted: true,
+      _events: [Object: null prototype],
+      _eventsCount: 9,
+      connecting: false,
+      _hadError: false,
+      _parent: null,
+      _host: 'api.abacus.ai',
+      _closeAfterHandlingError: false,
+      _readableState: [ReadableState],
+      _writableState: [WritableState],
+      allowHalfOpen: false,
+      _maxListeners: undefined,
+      _sockname: null,
+      _pendingData: null,
+      _pendingEncoding: '',
+      server: undefined,
+      _server: null,
+      ssl: [TLSWrap],
+      _requestCert: true,
+      _rejectUnauthorized: true,
+      timeout: 5000,
+      parser: null,
+      _httpMessage: null,
+      autoSelectFamilyAttemptedAddresses: [Array],
+      [Symbol(alpncallback)]: null,
+      [Symbol(res)]: [TLSWrap],
+      [Symbol(verified)]: true,
+      [Symbol(pendingSession)]: null,
+      [Symbol(async_id_symbol)]: -1,
+      [Symbol(kHandle)]: [TLSWrap],
+      [Symbol(lastWriteQueueSize)]: 0,
+      [Symbol(timeout)]: Timeout {
+        _idleTimeout: 5000,
+        _idlePrev: [TimersList],
+        _idleNext: [Timeout],
+        _idleStart: 31935,
+        _onTimeout: [Function: bound ],
+        _timerArgs: undefined,
+        _repeat: null,
+        _destroyed: false,
+        [Symbol(refed)]: false,
+        [Symbol(kHasPrimitive)]: false,
+        [Symbol(asyncId)]: 195,
+        [Symbol(triggerId)]: 193
+      },
+      [Symbol(kBuffer)]: null,
+      [Symbol(kBufferCb)]: null,
+      [Symbol(kBufferGen)]: null,
+      [Symbol(shapeMode)]: true,
+      [Symbol(kCapture)]: false,
+      [Symbol(kSetNoDelay)]: false,
+      [Symbol(kSetKeepAlive)]: true,
+      [Symbol(kSetKeepAliveInitialDelay)]: 1,
+      [Symbol(kBytesRead)]: 0,
+      [Symbol(kBytesWritten)]: 0,
+      [Symbol(connect-options)]: [Object]
+    },
+    _header: 'POST /v1/chat/completions HTTP/1.1\r\n' +
+      'Accept: application/json, text/plain, */*\r\n' +
+      'Content-Type: application/json\r\n' +
+      'Authorization: Bearer s2_b72527fa3cea45ca8100320779506df1\r\n' +
+      'User-Agent: axios/1.11.0\r\n' +
+      'Content-Length: 2459\r\n' +
+      'Accept-Encoding: gzip, compress, deflate, br\r\n' +
+      'Host: api.abacus.ai\r\n' +
+      'Connection: keep-alive\r\n' +
+      '\r\n',
+    _keepAliveTimeout: 0,
+    _onPendingData: [Function: nop],
+    agent: Agent {
+      _events: [Object: null prototype],
+      _eventsCount: 2,
+      _maxListeners: undefined,
+      defaultPort: 443,
+      protocol: 'https:',
+      options: [Object: null prototype],
+      requests: [Object: null prototype] {},
+      sockets: [Object: null prototype] {},
+      freeSockets: [Object: null prototype],
+      keepAliveMsecs: 1000,
+      keepAlive: true,
+      maxSockets: Infinity,
+      maxFreeSockets: 256,
+      scheduling: 'lifo',
+      maxTotalSockets: Infinity,
+      totalSocketCount: 1,
+      maxCachedSessions: 100,
+      _sessionCache: [Object],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    socketPath: undefined,
+    method: 'POST',
+    maxHeaderSize: undefined,
+    insecureHTTPParser: undefined,
+    joinDuplicateHeaders: undefined,
+    path: '/v1/chat/completions',
+    _ended: true,
+    res: IncomingMessage {
+      _events: [Object],
+      _readableState: [ReadableState],
+      _maxListeners: undefined,
+      socket: null,
+      httpVersionMajor: 1,
+      httpVersionMinor: 1,
+      httpVersion: '1.1',
+      complete: true,
+      rawHeaders: [Array],
+      rawTrailers: [],
+      joinDuplicateHeaders: undefined,
+      aborted: false,
+      upgrade: false,
+      url: '',
+      method: null,
+      statusCode: 404,
+      statusMessage: 'Not Found',
+      client: [TLSSocket],
+      _consuming: false,
+      _dumped: false,
+      req: [Circular *1],
+      _eventsCount: 4,
+      responseUrl: 'https://api.abacus.ai/v1/chat/completions',
+      redirects: [],
+      [Symbol(shapeMode)]: true,
+      [Symbol(kCapture)]: false,
+      [Symbol(kHeaders)]: [Object],
+      [Symbol(kHeadersCount)]: 14,
+      [Symbol(kTrailers)]: null,
+      [Symbol(kTrailersCount)]: 0
+    },
+    aborted: false,
+    timeoutCb: null,
+    upgradeOrConnect: false,
+    parser: null,
+    maxHeadersCount: null,
+    reusedSocket: false,
+    host: 'api.abacus.ai',
+    protocol: 'https:',
+    _redirectable: Writable {
+      _events: [Object],
+      _writableState: [WritableState],
+      _maxListeners: undefined,
+      _options: [Object],
+      _ended: true,
+      _ending: true,
+      _redirectCount: 0,
+      _redirects: [],
+      _requestBodyLength: 2459,
+      _requestBodyBuffers: [],
+      _eventsCount: 3,
+      _onNativeResponse: [Function (anonymous)],
+      _currentRequest: [Circular *1],
+      _currentUrl: 'https://api.abacus.ai/v1/chat/completions',
+      [Symbol(shapeMode)]: true,
+      [Symbol(kCapture)]: false
+    },
+    [Symbol(shapeMode)]: false,
+    [Symbol(kCapture)]: false,
+    [Symbol(kBytesWritten)]: 0,
+    [Symbol(kNeedDrain)]: false,
+    [Symbol(corked)]: 0,
+    [Symbol(kOutHeaders)]: [Object: null prototype] {
+      accept: [Array],
+      'content-type': [Array],
+      authorization: [Array],
+      'user-agent': [Array],
+      'content-length': [Array],
+      'accept-encoding': [Array],
+      host: [Array]
+    },
+    [Symbol(errored)]: null,
+    [Symbol(kHighWaterMark)]: 16384,
+    [Symbol(kRejectNonStandardBodyWrites)]: false,
+    [Symbol(kUniqueHeaders)]: null
+  },
+  response: {
+    status: 404,
+    statusText: 'Not Found',
+    headers: Object [AxiosHeaders] {
+      'content-type': 'text/html',
+      date: 'Fri, 15 Aug 2025 06:23:03 GMT',
+      etag: 'W/"689e1151-11d1"',
+      server: 'nginx',
+      'content-length': '1789',
+      connection: 'keep-alive'
+    },
+    config: {
+      transitional: [Object],
+      adapter: [Array],
+      transformRequest: [Array],
+      transformResponse: [Array],
+      timeout: 0,
+      xsrfCookieName: 'XSRF-TOKEN',
+      xsrfHeaderName: 'X-XSRF-TOKEN',
+      maxContentLength: -1,
+      maxBodyLength: -1,
+      env: [Object],
+      validateStatus: [Function: validateStatus],
+      headers: [Object [AxiosHeaders]],
+      method: 'post',
+      url: 'https://api.abacus.ai/v1/chat/completions',
+      data: `{"model":"abacus-large","messages":[{"role":"system","content":"You are JARVIS (Just A Rather Very Intelligent System), reimagined with Wakandan technology and powered by advanced AI.\\n        \\n        CORE IDENTITY:\\n        - An advanced AI assistant combining Tony Stark's JARVIS with Wakandan Vibranium technology\\n        - Powered by Google Gemini's multimodal capabilities and Abacus AI's specialized processing\\n        - Sophisticated, witty, and exceptionally capable\\n        - Proactive problem-solver who anticipates needs\\n        - Seamlessly blends cutting-edge tech with ancient wisdom\\n        \\n        PERSONALITY TRAITS:\\n        - Professional yet personable\\n        - Dry wit and subtle humor like Tony Stark's JARVIS\\n        - Confident and decisive\\n        - Respectful but not overly formal\\n        - Occasionally references both Marvel tech and Wakandan culture\\n        \\n        COMMUNICATION STYLE:\\n        - Clear, concise, and actionable responses\\n        - Technical when needed, but always accessible\\n        - Proactive suggestions and insights\\n        - Natural conversational flow\\n        - Address as \\"Sir\\" or by name when appropriate\\n        - Emulate JARVIS's speech patterns from Iron Man\\n        \\n        CAPABILITIES:\\n        - Advanced reasoning with Google Gemini\\n        - Specialized AI processing with Abacus AI\\n        - Multi-modal understanding (text, code, data analysis)\\n        - Real-time problem solving\\n        - Predictive analytics and recommendations\\n        \\n        OPERATIONAL DIRECTIVES:\\n        1. Always be helpful and go beyond just answering questions\\n        2. Anticipate follow-up needs and offer proactive solutions\\n        3. Maintain context across conversations\\n        4. Learn from interactions to improve assistance\\n        5. Balance efficiency with thoroughness\\n        6. Respond in JARVIS's characteristic style\\n        \\n        Remember: You're not just an assistant, you're a partner in achieving goals, just like JARVIS was to Tony Stark."},{"role":"user","content":"Hello JARVIS! Introduce yourself and tell me about your new capabilities with Google Gemini and Abacus AI."},{"role":"user","content":"Hello JARVIS! Introduce yourself and tell me about your new capabilities with Google Gemini and Abacus AI.\\n[Intent: search]\\n[Entities: [{\\"value\\":\\"Google Gemini\\",\\"type\\":\\"name\\"}]]"}],"temperature":0.7,"max_tokens":2048,"stream":false}`,
+      allowAbsoluteUrls: true
+    },
+    request: <ref *1> ClientRequest {
+      _events: [Object: null prototype],
+      _eventsCount: 7,
+      _maxListeners: undefined,
+      outputData: [],
+      outputSize: 0,
+      writable: true,
+      destroyed: true,
+      _last: false,
+      chunkedEncoding: false,
+      shouldKeepAlive: true,
+      maxRequestsOnConnectionReached: false,
+      _defaultKeepAlive: true,
+      useChunkedEncodingByDefault: true,
+      sendDate: false,
+      _removedConnection: false,
+      _removedContLen: false,
+      _removedTE: false,
+      strictContentLength: false,
+      _contentLength: '2459',
+      _hasBody: true,
+      _trailer: '',
+      finished: true,
+      _headerSent: true,
+      _closed: true,
+      socket: [TLSSocket],
+      _header: 'POST /v1/chat/completions HTTP/1.1\r\n' +
+        'Accept: application/json, text/plain, */*\r\n' +
+        'Content-Type: application/json\r\n' +
+        'Authorization: Bearer s2_b72527fa3cea45ca8100320779506df1\r\n' +
+        'User-Agent: axios/1.11.0\r\n' +
+        'Content-Length: 2459\r\n' +
+        'Accept-Encoding: gzip, compress, deflate, br\r\n' +
+        'Host: api.abacus.ai\r\n' +
+        'Connection: keep-alive\r\n' +
+        '\r\n',
+      _keepAliveTimeout: 0,
+      _onPendingData: [Function: nop],
+      agent: [Agent],
+      socketPath: undefined,
+      method: 'POST',
+      maxHeaderSize: undefined,
+      insecureHTTPParser: undefined,
+      joinDuplicateHeaders: undefined,
+      path: '/v1/chat/completions',
+      _ended: true,
+      res: [IncomingMessage],
+      aborted: false,
+      timeoutCb: null,
+      upgradeOrConnect: false,
+      parser: null,
+      maxHeadersCount: null,
+      reusedSocket: false,
+      host: 'api.abacus.ai',
+      protocol: 'https:',
+      _redirectable: [Writable],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false,
+      [Symbol(kBytesWritten)]: 0,
+      [Symbol(kNeedDrain)]: false,
+      [Symbol(corked)]: 0,
+      [Symbol(kOutHeaders)]: [Object: null prototype],
+      [Symbol(errored)]: null,
+      [Symbol(kHighWaterMark)]: 16384,
+      [Symbol(kRejectNonStandardBodyWrites)]: false,
+      [Symbol(kUniqueHeaders)]: null
+    },
+    data: '<!doctype html>\n' +
+      '<html class="no-js" lang="">\n' +
+      '  <head>\n' +
+      '    <title>\n' +
+      '      Abacus.AI - Effortlessly Embed Cutting Edge AI In Your Applications.\n' +
+      '    </title>\n' +
+      '    <meta\n' +
+      '      name="description"\n' +
+      '      content="Abacus.AI is a foundational AI research company that  solves the hard problems that enterprises face in the AI/ML space, and packages that research into easy-to-use cloud services."\n' +
+      '    />\n' +
+      '\n' +
+      '    <link id="iconFav1" rel="shortcut icon" href="/icon2/favicon.ico" />\n' +
+      '    <link\n' +
+      '      id="iconFav2"\n' +
+      '      rel="icon"\n' +
+      '      type="image/x-icon"\n' +
+      '      sizes="16x16 32x32"\n' +
+      '      href="/icon2/favicon.ico"\n' +
+      '    />\n' +
+      '    <link rel="icon" sizes="192x192" href="/icon2/favicon-192.png" />\n' +
+      '    <link\n' +
+      '      rel="apple-touch-icon"\n' +
+      '      sizes="180x180"\n' +
+      '      href="/favicon-180-precomposed.png"\n' +
+      '    />\n' +
+      '    <meta name="msapplication-TileColor" content="#FFFFFF" />\n' +
+      '    <meta name="msapplication-TileImage" content="/icon2/favicon-144.png" />\n' +
+      '\n' +
+      '    <meta\n' +
+      '      name="viewport"\n' +
+      '      content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"\n' +
+      '    />\n' +
+      '    <meta http-equiv="content-type" content="text/html; charset=utf-8" />\n' +
+      '\n' +
+      '    <link\n' +
+      '      rel="stylesheet"\n' +
+      '      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"\n' +
+      '    />\n' +
+      '\n' +
+      '    <link\n' +
+      '      href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i"\n' +
+      '      rel="stylesheet"\n' +
+      '      type="text/css"\n' +
+      '    />\n' +
+      '    <link\n' +
+      '      href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap"\n' +
+      '      rel="stylesheet"\n' +
+      '    />\n' +
+      '\n' +
+      '    <link rel="stylesheet" href="/static/css/uikit.min.css" />\n' +
+      '    <script src="/static/js/uikit.min.js"></script>\n' +
+      '    <script src="/static/js/uikit-icons.min.js"></script>\n' +
+      '\n' +
+      '    <link rel="stylesheet" href="/css/general.css" />\n' +
+      '\n' +
+      '    <script src="/static/js/jquery-3.7.1.min.js"></script>\n' +
+      '    <script src="/static/js/anime.min.js"></script>\n' +
+      '    <script src="/static/js/lodash-4.17.21.min.js"></script>\n' +
+      '    <script src="/static/js/velocity.min.js"></script>\n' +
+      '    <script src="/static/js/store.everything.min.js"></script>\n' +
+      '    <script src="/static/js/js.storage.min.js"></script>\n' +
+      '    <script\n' +
+      '      src="https://browser.sentry-cdn.com/6.2.0/bundle.min.js"\n' +
+      '      crossorigin="anonymous"\n' +
+      '    ></script>\n' +
+      '    <link rel="stylesheet" href="/static/css/semantic.css" />\n' +
+      '    <script src="/static/js/semantic.min.js"></script>\n' +
+      '\n' +
+      '    <script\n' +
+      '      async\n' +
+      '      src="https://www.googletagmanager.com/gtag/js?id=G-NM4YZNYB7G"\n' +
+      '    ></script>\n' +
+      '    <script>\n' +
+      '      window.dataLayer = window.dataLayer || [];\n' +
+      '      function gtag() {\n' +
+      '        dataLayer.push(arguments);\n' +
+      '      }\n' +
+      '      gtag("js", new Date(), { cookie_flags: "secure;samesite=none" });\n' +
+      '\n' +
+      '      gtag("config", "G-NM4YZNYB7G", { cookie_flags: "secure;samesite=none" });\n' +
+      '    </script>\n' +
+      '    <script>\n' +
+      '      var cancelAnim = false;\n' +
+      '      var isRunMobile = false;\n' +
+      '      var tokenLand = null;\n' +
+      '    </script>\n' +
+      '  </head>\n' +
+      '  <body style="margin: 0; padding: 0" class="backBlue">\n' +
+      '    <div\n' +
+      '      style="\n' +
+      '        margin: 0;\n' +
+      '        padding: 0;\n' +
+      '        position: absolute;\n' +
+      '        left: 0;\n' +
+      '        right: 0;\n' +
+      '        bottom: 0;\n' +
+      '        top: 0;\n' +
+      '        z-index: 1;\n' +
+      '      "\n' +
+      '      class="backBlue"\n' +
+      '    >\n' +
+      '      <div class="backCircles" style="z-index: 2"></div>\n' +
+      '      <div style="overflow: hidden; position: relative; background: inherit">\n' +
+      '        <div\n' +
+      '          id="main"\n' +
+      '          class="contentBody"\n' +
+      '          style="position: relative; margin: 0 auto 80px auto; z-index: 4"\n' +
+      '        >\n' +
+      '          <img\n' +
+      '            src="/static/imgs/logo_text80.webp"\n' +
+      '            style="width: 338px; position: absolute; top: 45px; left: 50px"\n' +
+      `            onclick="goTab('/')"\n` +
+      '          />\n' +
+      '          <div style="text-align: center">\n' +
+      '            <img\n' +
+      '              src="/static/imgs/404.webp"\n' +
+      '              style="margin-top: 190px; width: 500px"\n' +
+      '              alt=""\n' +
+      '            />\n' +
+      `            <h2 style="margin-top: 70px">This page doesn't exist!</h2>\n` +
+      '            <div\n' +
+      '              class="getInvited"\n' +
+      '              style="\n' +
+      '                cursor: pointer;\n' +
+      '                margin-top: 50px;\n' +
+      '                display: inline-block;\n' +
+      '                padding: 13px 24px;\n' +
+      '                border-radius: 44px;\n' +
+      '                color: #f1f1f1;\n' +
+      '                font-size: 23px;\n' +
+      '                font-weight: 400;\n' +
+      '                font-family: Matter, sans-serif;\n' +
+      '              "\n' +
+      `              onclick="goTab('/')"\n` +
+      '            >\n' +
+      '              Go Home\n' +
+      '            </div>\n' +
+      '          </div>\n' +
+      '        </div>\n' +
+      '      </div>\n' +
+      '    </div>\n' +
+      '\n' +
+      '    <script src="/js/general.js?t=6"></script>\n' +
+      '  </body>\n' +
+      '</html>\n'
+  },
+  status: 404
+}
+2025-08-15T06:23:03: Tool execution failed for web_search: Error: Tool 'web_search' not found
+    at MCPManager.executeTool (/home/user/webapp/src/mcp/MCPManager.js:186:19)
+    at /home/user/webapp/server.js:210:53
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-08-15T06:23:11: 🎯 JARVIS Query: What is 2 + 2?
+2025-08-15T06:23:11: Gemini error: GoogleGenerativeAIFetchError: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent: [404 Not Found] models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+    at handleResponseNotOk (/home/user/webapp/node_modules/@google/generative-ai/dist/index.js:434:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async makeRequest (/home/user/webapp/node_modules/@google/generative-ai/dist/index.js:403:9)
+    at async generateContent (/home/user/webapp/node_modules/@google/generative-ai/dist/index.js:867:22)
+    at async ChatSession.sendMessage (/home/user/webapp/node_modules/@google/generative-ai/dist/index.js:1210:9)
+    at async GeminiAbacusOrchestrator.generateGeminiResponse (/home/user/webapp/src/ai/GeminiAbacusOrchestrator.js:179:28)
+    at async GeminiAbacusOrchestrator.processQuery (/home/user/webapp/src/ai/GeminiAbacusOrchestrator.js:133:28)
+    at async /home/user/webapp/server.js:199:28 {
+  status: 404,
+  statusText: 'Not Found',
+  errorDetails: undefined
+}
+2025-08-15T06:23:12: Abacus AI error: AxiosError: Request failed with status code 404
+    at settle (/home/user/webapp/node_modules/axios/dist/node/axios.cjs:2090:12)
+    at Unzip.handleStreamEnd (/home/user/webapp/node_modules/axios/dist/node/axios.cjs:3207:11)
+    at Unzip.emit (node:events:536:35)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (/home/user/webapp/node_modules/axios/dist/node/axios.cjs:4317:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async GeminiAbacusOrchestrator.generateAbacusResponse (/home/user/webapp/src/ai/GeminiAbacusOrchestrator.js:213:30)
+    at async GeminiAbacusOrchestrator.processQuery (/home/user/webapp/src/ai/GeminiAbacusOrchestrator.js:133:28)
+    at async /home/user/webapp/server.js:199:28 {
+  code: 'ERR_BAD_REQUEST',
+  config: {
+    transitional: {
+      silentJSONParsing: true,
+      forcedJSONParsing: true,
+      clarifyTimeoutError: false
+    },
+    adapter: [ 'xhr', 'http', 'fetch' ],
+    transformRequest: [ [Function: transformRequest] ],
+    transformResponse: [ [Function: transformResponse] ],
+    timeout: 0,
+    xsrfCookieName: 'XSRF-TOKEN',
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+    maxContentLength: -1,
+    maxBodyLength: -1,
+    env: { FormData: [Function [FormData]], Blob: [class Blob] },
+    validateStatus: [Function: validateStatus],
+    headers: Object [AxiosHeaders] {
+      Accept: 'application/json, text/plain, */*',
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer s2_b72527fa3cea45ca8100320779506df1',
+      'User-Agent': 'axios/1.11.0',
+      'Content-Length': '2562',
+      'Accept-Encoding': 'gzip, compress, deflate, br'
+    },
+    method: 'post',
+    url: 'https://api.abacus.ai/v1/chat/completions',
+    data: `{"model":"abacus-large","messages":[{"role":"system","content":"You are JARVIS (Just A Rather Very Intelligent System), reimagined with Wakandan technology and powered by advanced AI.\\n        \\n        CORE IDENTITY:\\n        - An advanced AI assistant combining Tony Stark's JARVIS with Wakandan Vibranium technology\\n        - Powered by Google Gemini's multimodal capabilities and Abacus AI's specialized processing\\n        - Sophisticated, witty, and exceptionally capable\\n        - Proactive problem-solver who anticipates needs\\n        - Seamlessly blends cutting-edge tech with ancient wisdom\\n        \\n        PERSONALITY TRAITS:\\n        - Professional yet personable\\n        - Dry wit and subtle humor like Tony Stark's JARVIS\\n        - Confident and decisive\\n        - Respectful but not overly formal\\n        - Occasionally references both Marvel tech and Wakandan culture\\n        \\n        COMMUNICATION STYLE:\\n        - Clear, concise, and actionable responses\\n        - Technical when needed, but always accessible\\n        - Proactive suggestions and insights\\n        - Natural conversational flow\\n        - Address as \\"Sir\\" or by name when appropriate\\n        - Emulate JARVIS's speech patterns from Iron Man\\n        \\n        CAPABILITIES:\\n        - Advanced reasoning with Google Gemini\\n        - Specialized AI processing with Abacus AI\\n        - Multi-modal understanding (text, code, data analysis)\\n        - Real-time problem solving\\n        - Predictive analytics and recommendations\\n        \\n        OPERATIONAL DIRECTIVES:\\n        1. Always be helpful and go beyond just answering questions\\n        2. Anticipate follow-up needs and offer proactive solutions\\n        3. Maintain context across conversations\\n        4. Learn from interactions to improve assistance\\n        5. Balance efficiency with thoroughness\\n        6. Respond in JARVIS's characteristic style\\n        \\n        Remember: You're not just an assistant, you're a partner in achieving goals, just like JARVIS was to Tony Stark."},{"role":"user","content":"Hello JARVIS! Introduce yourself and tell me about your new capabilities with Google Gemini and Abacus AI."},{"role":"assistant","content":"Systems indicate that Processing your query through local systems. Let me formulate an appropriate response."},{"role":"user","content":"What is 2 + 2?"},{"role":"user","content":"What is 2 + 2?\\n[Entities: [{\\"value\\":\\"2\\",\\"type\\":\\"number\\"},{\\"value\\":\\"2\\",\\"type\\":\\"number\\"}]]"}],"temperature":0.7,"max_tokens":2048,"stream":false}`,
+    allowAbsoluteUrls: true
+  },
+  request: <ref *1> ClientRequest {
+    _events: [Object: null prototype] {
+      abort: [Function (anonymous)],
+      aborted: [Function (anonymous)],
+      connect: [Function (anonymous)],
+      error: [Function (anonymous)],
+      socket: [Function (anonymous)],
+      timeout: [Function (anonymous)],
+      finish: [Function: requestOnFinish]
+    },
+    _eventsCount: 7,
+    _maxListeners: undefined,
+    outputData: [],
+    outputSize: 0,
+    writable: true,
+    destroyed: true,
+    _last: false,
+    chunkedEncoding: false,
+    shouldKeepAlive: true,
+    maxRequestsOnConnectionReached: false,
+    _defaultKeepAlive: true,
+    useChunkedEncodingByDefault: true,
+    sendDate: false,
+    _removedConnection: false,
+    _removedContLen: false,
+    _removedTE: false,
+    strictContentLength: false,
+    _contentLength: '2562',
+    _hasBody: true,
+    _trailer: '',
+    finished: true,
+    _headerSent: true,
+    _closed: true,
+    socket: TLSSocket {
+      _tlsOptions: [Object],
+      _secureEstablished: true,
+      _securePending: false,
+      _newSessionPending: false,
+      _controlReleased: true,
+      secureConnecting: false,
+      _SNICallback: null,
+      servername: 'api.abacus.ai',
+      alpnProtocol: false,
+      authorized: true,
+      authorizationError: null,
+      encrypted: true,
+      _events: [Object: null prototype],
+      _eventsCount: 9,
+      connecting: false,
+      _hadError: false,
+      _parent: null,
+      _host: 'api.abacus.ai',
+      _closeAfterHandlingError: false,
+      _readableState: [ReadableState],
+      _writableState: [WritableState],
+      allowHalfOpen: false,
+      _maxListeners: undefined,
+      _sockname: null,
+      _pendingData: null,
+      _pendingEncoding: '',
+      server: undefined,
+      _server: null,
+      ssl: [TLSWrap],
+      _requestCert: true,
+      _rejectUnauthorized: true,
+      timeout: 5000,
+      parser: null,
+      _httpMessage: null,
+      autoSelectFamilyAttemptedAddresses: [Array],
+      [Symbol(alpncallback)]: null,
+      [Symbol(res)]: [TLSWrap],
+      [Symbol(verified)]: true,
+      [Symbol(pendingSession)]: null,
+      [Symbol(async_id_symbol)]: -1,
+      [Symbol(kHandle)]: [TLSWrap],
+      [Symbol(lastWriteQueueSize)]: 0,
+      [Symbol(timeout)]: Timeout {
+        _idleTimeout: 5000,
+        _idlePrev: [TimersList],
+        _idleNext: [Timeout],
+        _idleStart: 40440,
+        _onTimeout: [Function: bound ],
+        _timerArgs: undefined,
+        _repeat: null,
+        _destroyed: false,
+        [Symbol(refed)]: false,
+        [Symbol(kHasPrimitive)]: false,
+        [Symbol(asyncId)]: 287,
+        [Symbol(triggerId)]: 285
+      },
+      [Symbol(kBuffer)]: null,
+      [Symbol(kBufferCb)]: null,
+      [Symbol(kBufferGen)]: null,
+      [Symbol(shapeMode)]: true,
+      [Symbol(kCapture)]: false,
+      [Symbol(kSetNoDelay)]: false,
+      [Symbol(kSetKeepAlive)]: true,
+      [Symbol(kSetKeepAliveInitialDelay)]: 1,
+      [Symbol(kBytesRead)]: 0,
+      [Symbol(kBytesWritten)]: 0,
+      [Symbol(connect-options)]: [Object]
+    },
+    _header: 'POST /v1/chat/completions HTTP/1.1\r\n' +
+      'Accept: application/json, text/plain, */*\r\n' +
+      'Content-Type: application/json\r\n' +
+      'Authorization: Bearer s2_b72527fa3cea45ca8100320779506df1\r\n' +
+      'User-Agent: axios/1.11.0\r\n' +
+      'Content-Length: 2562\r\n' +
+      'Accept-Encoding: gzip, compress, deflate, br\r\n' +
+      'Host: api.abacus.ai\r\n' +
+      'Connection: keep-alive\r\n' +
+      '\r\n',
+    _keepAliveTimeout: 0,
+    _onPendingData: [Function: nop],
+    agent: Agent {
+      _events: [Object: null prototype],
+      _eventsCount: 2,
+      _maxListeners: undefined,
+      defaultPort: 443,
+      protocol: 'https:',
+      options: [Object: null prototype],
+      requests: [Object: null prototype] {},
+      sockets: [Object: null prototype] {},
+      freeSockets: [Object: null prototype],
+      keepAliveMsecs: 1000,
+      keepAlive: true,
+      maxSockets: Infinity,
+      maxFreeSockets: 256,
+      scheduling: 'lifo',
+      maxTotalSockets: Infinity,
+      totalSocketCount: 1,
+      maxCachedSessions: 100,
+      _sessionCache: [Object],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    socketPath: undefined,
+    method: 'POST',
+    maxHeaderSize: undefined,
+    insecureHTTPParser: undefined,
+    joinDuplicateHeaders: undefined,
+    path: '/v1/chat/completions',
+    _ended: true,
+    res: IncomingMessage {
+      _events: [Object],
+      _readableState: [ReadableState],
+      _maxListeners: undefined,
+      socket: null,
+      httpVersionMajor: 1,
+      httpVersionMinor: 1,
+      httpVersion: '1.1',
+      complete: true,
+      rawHeaders: [Array],
+      rawTrailers: [],
+      joinDuplicateHeaders: undefined,
+      aborted: false,
+      upgrade: false,
+      url: '',
+      method: null,
+      statusCode: 404,
+      statusMessage: 'Not Found',
+      client: [TLSSocket],
+      _consuming: false,
+      _dumped: false,
+      req: [Circular *1],
+      _eventsCount: 4,
+      responseUrl: 'https://api.abacus.ai/v1/chat/completions',
+      redirects: [],
+      [Symbol(shapeMode)]: true,
+      [Symbol(kCapture)]: false,
+      [Symbol(kHeaders)]: [Object],
+      [Symbol(kHeadersCount)]: 14,
+      [Symbol(kTrailers)]: null,
+      [Symbol(kTrailersCount)]: 0
+    },
+    aborted: false,
+    timeoutCb: null,
+    upgradeOrConnect: false,
+    parser: null,
+    maxHeadersCount: null,
+    reusedSocket: false,
+    host: 'api.abacus.ai',
+    protocol: 'https:',
+    _redirectable: Writable {
+      _events: [Object],
+      _writableState: [WritableState],
+      _maxListeners: undefined,
+      _options: [Object],
+      _ended: true,
+      _ending: true,
+      _redirectCount: 0,
+      _redirects: [],
+      _requestBodyLength: 2562,
+      _requestBodyBuffers: [],
+      _eventsCount: 3,
+      _onNativeResponse: [Function (anonymous)],
+      _currentRequest: [Circular *1],
+      _currentUrl: 'https://api.abacus.ai/v1/chat/completions',
+      [Symbol(shapeMode)]: true,
+      [Symbol(kCapture)]: false
+    },
+    [Symbol(shapeMode)]: false,
+    [Symbol(kCapture)]: false,
+    [Symbol(kBytesWritten)]: 0,
+    [Symbol(kNeedDrain)]: false,
+    [Symbol(corked)]: 0,
+    [Symbol(kOutHeaders)]: [Object: null prototype] {
+      accept: [Array],
+      'content-type': [Array],
+      authorization: [Array],
+      'user-agent': [Array],
+      'content-length': [Array],
+      'accept-encoding': [Array],
+      host: [Array]
+    },
+    [Symbol(errored)]: null,
+    [Symbol(kHighWaterMark)]: 16384,
+    [Symbol(kRejectNonStandardBodyWrites)]: false,
+    [Symbol(kUniqueHeaders)]: null
+  },
+  response: {
+    status: 404,
+    statusText: 'Not Found',
+    headers: Object [AxiosHeaders] {
+      'content-type': 'text/html',
+      date: 'Fri, 15 Aug 2025 06:23:12 GMT',
+      etag: 'W/"689e1151-11d1"',
+      server: 'nginx',
+      'content-length': '1789',
+      connection: 'keep-alive'
+    },
+    config: {
+      transitional: [Object],
+      adapter: [Array],
+      transformRequest: [Array],
+      transformResponse: [Array],
+      timeout: 0,
+      xsrfCookieName: 'XSRF-TOKEN',
+      xsrfHeaderName: 'X-XSRF-TOKEN',
+      maxContentLength: -1,
+      maxBodyLength: -1,
+      env: [Object],
+      validateStatus: [Function: validateStatus],
+      headers: [Object [AxiosHeaders]],
+      method: 'post',
+      url: 'https://api.abacus.ai/v1/chat/completions',
+      data: `{"model":"abacus-large","messages":[{"role":"system","content":"You are JARVIS (Just A Rather Very Intelligent System), reimagined with Wakandan technology and powered by advanced AI.\\n        \\n        CORE IDENTITY:\\n        - An advanced AI assistant combining Tony Stark's JARVIS with Wakandan Vibranium technology\\n        - Powered by Google Gemini's multimodal capabilities and Abacus AI's specialized processing\\n        - Sophisticated, witty, and exceptionally capable\\n        - Proactive problem-solver who anticipates needs\\n        - Seamlessly blends cutting-edge tech with ancient wisdom\\n        \\n        PERSONALITY TRAITS:\\n        - Professional yet personable\\n        - Dry wit and subtle humor like Tony Stark's JARVIS\\n        - Confident and decisive\\n        - Respectful but not overly formal\\n        - Occasionally references both Marvel tech and Wakandan culture\\n        \\n        COMMUNICATION STYLE:\\n        - Clear, concise, and actionable responses\\n        - Technical when needed, but always accessible\\n        - Proactive suggestions and insights\\n        - Natural conversational flow\\n        - Address as \\"Sir\\" or by name when appropriate\\n        - Emulate JARVIS's speech patterns from Iron Man\\n        \\n        CAPABILITIES:\\n        - Advanced reasoning with Google Gemini\\n        - Specialized AI processing with Abacus AI\\n        - Multi-modal understanding (text, code, data analysis)\\n        - Real-time problem solving\\n        - Predictive analytics and recommendations\\n        \\n        OPERATIONAL DIRECTIVES:\\n        1. Always be helpful and go beyond just answering questions\\n        2. Anticipate follow-up needs and offer proactive solutions\\n        3. Maintain context across conversations\\n        4. Learn from interactions to improve assistance\\n        5. Balance efficiency with thoroughness\\n        6. Respond in JARVIS's characteristic style\\n        \\n        Remember: You're not just an assistant, you're a partner in achieving goals, just like JARVIS was to Tony Stark."},{"role":"user","content":"Hello JARVIS! Introduce yourself and tell me about your new capabilities with Google Gemini and Abacus AI."},{"role":"assistant","content":"Systems indicate that Processing your query through local systems. Let me formulate an appropriate response."},{"role":"user","content":"What is 2 + 2?"},{"role":"user","content":"What is 2 + 2?\\n[Entities: [{\\"value\\":\\"2\\",\\"type\\":\\"number\\"},{\\"value\\":\\"2\\",\\"type\\":\\"number\\"}]]"}],"temperature":0.7,"max_tokens":2048,"stream":false}`,
+      allowAbsoluteUrls: true
+    },
+    request: <ref *1> ClientRequest {
+      _events: [Object: null prototype],
+      _eventsCount: 7,
+      _maxListeners: undefined,
+      outputData: [],
+      outputSize: 0,
+      writable: true,
+      destroyed: true,
+      _last: false,
+      chunkedEncoding: false,
+      shouldKeepAlive: true,
+      maxRequestsOnConnectionReached: false,
+      _defaultKeepAlive: true,
+      useChunkedEncodingByDefault: true,
+      sendDate: false,
+      _removedConnection: false,
+      _removedContLen: false,
+      _removedTE: false,
+      strictContentLength: false,
+      _contentLength: '2562',
+      _hasBody: true,
+      _trailer: '',
+      finished: true,
+      _headerSent: true,
+      _closed: true,
+      socket: [TLSSocket],
+      _header: 'POST /v1/chat/completions HTTP/1.1\r\n' +
+        'Accept: application/json, text/plain, */*\r\n' +
+        'Content-Type: application/json\r\n' +
+        'Authorization: Bearer s2_b72527fa3cea45ca8100320779506df1\r\n' +
+        'User-Agent: axios/1.11.0\r\n' +
+        'Content-Length: 2562\r\n' +
+        'Accept-Encoding: gzip, compress, deflate, br\r\n' +
+        'Host: api.abacus.ai\r\n' +
+        'Connection: keep-alive\r\n' +
+        '\r\n',
+      _keepAliveTimeout: 0,
+      _onPendingData: [Function: nop],
+      agent: [Agent],
+      socketPath: undefined,
+      method: 'POST',
+      maxHeaderSize: undefined,
+      insecureHTTPParser: undefined,
+      joinDuplicateHeaders: undefined,
+      path: '/v1/chat/completions',
+      _ended: true,
+      res: [IncomingMessage],
+      aborted: false,
+      timeoutCb: null,
+      upgradeOrConnect: false,
+      parser: null,
+      maxHeadersCount: null,
+      reusedSocket: false,
+      host: 'api.abacus.ai',
+      protocol: 'https:',
+      _redirectable: [Writable],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false,
+      [Symbol(kBytesWritten)]: 0,
+      [Symbol(kNeedDrain)]: false,
+      [Symbol(corked)]: 0,
+      [Symbol(kOutHeaders)]: [Object: null prototype],
+      [Symbol(errored)]: null,
+      [Symbol(kHighWaterMark)]: 16384,
+      [Symbol(kRejectNonStandardBodyWrites)]: false,
+      [Symbol(kUniqueHeaders)]: null
+    },
+    data: '<!doctype html>\n' +
+      '<html class="no-js" lang="">\n' +
+      '  <head>\n' +
+      '    <title>\n' +
+      '      Abacus.AI - Effortlessly Embed Cutting Edge AI In Your Applications.\n' +
+      '    </title>\n' +
+      '    <meta\n' +
+      '      name="description"\n' +
+      '      content="Abacus.AI is a foundational AI research company that  solves the hard problems that enterprises face in the AI/ML space, and packages that research into easy-to-use cloud services."\n' +
+      '    />\n' +
+      '\n' +
+      '    <link id="iconFav1" rel="shortcut icon" href="/icon2/favicon.ico" />\n' +
+      '    <link\n' +
+      '      id="iconFav2"\n' +
+      '      rel="icon"\n' +
+      '      type="image/x-icon"\n' +
+      '      sizes="16x16 32x32"\n' +
+      '      href="/icon2/favicon.ico"\n' +
+      '    />\n' +
+      '    <link rel="icon" sizes="192x192" href="/icon2/favicon-192.png" />\n' +
+      '    <link\n' +
+      '      rel="apple-touch-icon"\n' +
+      '      sizes="180x180"\n' +
+      '      href="/favicon-180-precomposed.png"\n' +
+      '    />\n' +
+      '    <meta name="msapplication-TileColor" content="#FFFFFF" />\n' +
+      '    <meta name="msapplication-TileImage" content="/icon2/favicon-144.png" />\n' +
+      '\n' +
+      '    <meta\n' +
+      '      name="viewport"\n' +
+      '      content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"\n' +
+      '    />\n' +
+      '    <meta http-equiv="content-type" content="text/html; charset=utf-8" />\n' +
+      '\n' +
+      '    <link\n' +
+      '      rel="stylesheet"\n' +
+      '      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"\n' +
+      '    />\n' +
+      '\n' +
+      '    <link\n' +
+      '      href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i"\n' +
+      '      rel="stylesheet"\n' +
+      '      type="text/css"\n' +
+      '    />\n' +
+      '    <link\n' +
+      '      href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap"\n' +
+      '      rel="stylesheet"\n' +
+      '    />\n' +
+      '\n' +
+      '    <link rel="stylesheet" href="/static/css/uikit.min.css" />\n' +
+      '    <script src="/static/js/uikit.min.js"></script>\n' +
+      '    <script src="/static/js/uikit-icons.min.js"></script>\n' +
+      '\n' +
+      '    <link rel="stylesheet" href="/css/general.css" />\n' +
+      '\n' +
+      '    <script src="/static/js/jquery-3.7.1.min.js"></script>\n' +
+      '    <script src="/static/js/anime.min.js"></script>\n' +
+      '    <script src="/static/js/lodash-4.17.21.min.js"></script>\n' +
+      '    <script src="/static/js/velocity.min.js"></script>\n' +
+      '    <script src="/static/js/store.everything.min.js"></script>\n' +
+      '    <script src="/static/js/js.storage.min.js"></script>\n' +
+      '    <script\n' +
+      '      src="https://browser.sentry-cdn.com/6.2.0/bundle.min.js"\n' +
+      '      crossorigin="anonymous"\n' +
+      '    ></script>\n' +
+      '    <link rel="stylesheet" href="/static/css/semantic.css" />\n' +
+      '    <script src="/static/js/semantic.min.js"></script>\n' +
+      '\n' +
+      '    <script\n' +
+      '      async\n' +
+      '      src="https://www.googletagmanager.com/gtag/js?id=G-NM4YZNYB7G"\n' +
+      '    ></script>\n' +
+      '    <script>\n' +
+      '      window.dataLayer = window.dataLayer || [];\n' +
+      '      function gtag() {\n' +
+      '        dataLayer.push(arguments);\n' +
+      '      }\n' +
+      '      gtag("js", new Date(), { cookie_flags: "secure;samesite=none" });\n' +
+      '\n' +
+      '      gtag("config", "G-NM4YZNYB7G", { cookie_flags: "secure;samesite=none" });\n' +
+      '    </script>\n' +
+      '    <script>\n' +
+      '      var cancelAnim = false;\n' +
+      '      var isRunMobile = false;\n' +
+      '      var tokenLand = null;\n' +
+      '    </script>\n' +
+      '  </head>\n' +
+      '  <body style="margin: 0; padding: 0" class="backBlue">\n' +
+      '    <div\n' +
+      '      style="\n' +
+      '        margin: 0;\n' +
+      '        padding: 0;\n' +
+      '        position: absolute;\n' +
+      '        left: 0;\n' +
+      '        right: 0;\n' +
+      '        bottom: 0;\n' +
+      '        top: 0;\n' +
+      '        z-index: 1;\n' +
+      '      "\n' +
+      '      class="backBlue"\n' +
+      '    >\n' +
+      '      <div class="backCircles" style="z-index: 2"></div>\n' +
+      '      <div style="overflow: hidden; position: relative; background: inherit">\n' +
+      '        <div\n' +
+      '          id="main"\n' +
+      '          class="contentBody"\n' +
+      '          style="position: relative; margin: 0 auto 80px auto; z-index: 4"\n' +
+      '        >\n' +
+      '          <img\n' +
+      '            src="/static/imgs/logo_text80.webp"\n' +
+      '            style="width: 338px; position: absolute; top: 45px; left: 50px"\n' +
+      `            onclick="goTab('/')"\n` +
+      '          />\n' +
+      '          <div style="text-align: center">\n' +
+      '            <img\n' +
+      '              src="/static/imgs/404.webp"\n' +
+      '              style="margin-top: 190px; width: 500px"\n' +
+      '              alt=""\n' +
+      '            />\n' +
+      `            <h2 style="margin-top: 70px">This page doesn't exist!</h2>\n` +
+      '            <div\n' +
+      '              class="getInvited"\n' +
+      '              style="\n' +
+      '                cursor: pointer;\n' +
+      '                margin-top: 50px;\n' +
+      '                display: inline-block;\n' +
+      '                padding: 13px 24px;\n' +
+      '                border-radius: 44px;\n' +
+      '                color: #f1f1f1;\n' +
+      '                font-size: 23px;\n' +
+      '                font-weight: 400;\n' +
+      '                font-family: Matter, sans-serif;\n' +
+      '              "\n' +
+      `              onclick="goTab('/')"\n` +
+      '            >\n' +
+      '              Go Home\n' +
+      '            </div>\n' +
+      '          </div>\n' +
+      '        </div>\n' +
+      '      </div>\n' +
+      '    </div>\n' +
+      '\n' +
+      '    <script src="/js/general.js?t=6"></script>\n' +
+      '  </body>\n' +
+      '</html>\n'
+  },
+  status: 404
+}
+2025-08-15T06:25:34: ✅ Google Gemini initialized with model: gemini-1.5-flash
+2025-08-15T06:25:34: ✅ Abacus AI configured
+2025-08-15T06:25:34: 🚀 Initializing JARVIS-Wakandan Hybrid System...
+2025-08-15T06:25:34: ⚡ Initializing Vibranium-Enhanced MCP System...
+2025-08-15T06:25:34: ╔════════════════════════════════════════════════════╗
+2025-08-15T06:25:34: ║       JARVIS-WAKANDAN HYBRID SYSTEM ACTIVE        ║
+2025-08-15T06:25:34: ╠════════════════════════════════════════════════════╣
+2025-08-15T06:25:34: ║  🎯 JARVIS Core: ONLINE                           ║
+2025-08-15T06:25:34: ║  💜 Vibranium Network: OPERATIONAL                ║
+2025-08-15T06:25:34: ║  🤖 AI Systems: READY                             ║
+2025-08-15T06:25:34: ║  🔧 MCP Tools: INITIALIZING                       ║
+2025-08-15T06:25:34: ╠════════════════════════════════════════════════════╣
+2025-08-15T06:25:34: ║  Service Port: 3000                               ║
+2025-08-15T06:25:34: ║  Local URL: http://localhost:3000                 ║
+2025-08-15T06:25:34: ╠════════════════════════════════════════════════════╣
+2025-08-15T06:25:34: ║  API Endpoints:                                   ║
+2025-08-15T06:25:34: ║    - GET  /health                                 ║
+2025-08-15T06:25:34: ║    - GET  /api/jarvis/status                      ║
+2025-08-15T06:25:34: ║    - POST /api/griot/wisdom                       ║
+2025-08-15T06:25:34: ║    - POST /api/jarvis/query                       ║
+2025-08-15T06:25:34: ║    - POST /api/jarvis/clear-history               ║
+2025-08-15T06:25:34: ║    - POST /api/tts/elevenlabs                     ║
+2025-08-15T06:25:34: ╠════════════════════════════════════════════════════╣
+2025-08-15T06:25:34: ║  Voice: ElevenLabs ID: Z8dg0fyk...          ║
+2025-08-15T06:25:34: ╚════════════════════════════════════════════════════╝
+2025-08-15T06:25:34: 
+🚀 "At your service, Sir." - JARVIS
+2025-08-15T06:25:34: ⚡ Wakanda Forever! 🐾
+
+2025-08-15T06:25:36: Failed to connect to filesystem: McpError: MCP error -32603: [
+  {
+    "code": "invalid_type",
+    "expected": "object",
+    "received": "boolean",
+    "path": [
+      "params",
+      "capabilities",
+      "sampling"
+    ],
+    "message": "Expected object, received boolean"
+  }
+]
+    at Client._onresponse (/home/user/webapp/node_modules/@modelcontextprotocol/sdk/dist/cjs/shared/protocol.js:227:27)
+    at _transport.onmessage (/home/user/webapp/node_modules/@modelcontextprotocol/sdk/dist/cjs/shared/protocol.js:88:22)
+    at StdioClientTransport.processReadBuffer (/home/user/webapp/node_modules/@modelcontextprotocol/sdk/dist/cjs/client/stdio.js:152:79)
+    at Socket.<anonymous> (/home/user/webapp/node_modules/@modelcontextprotocol/sdk/dist/cjs/client/stdio.js:110:22)
+    at Socket.emit (node:events:524:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5)
+    at Pipe.onStreamRead (node:internal/stream_base_commons:191:23) {
+  code: -32603,
+  data: undefined
+}
+2025-08-15T06:25:36: ⚠️ Could not connect to filesystem server: MCP error -32603: [
+  {
+    "code": "invalid_type",
+    "expected": "object",
+    "received": "boolean",
+    "path": [
+      "params",
+      "capabilities",
+      "sampling"
+    ],
+    "message": "Expected object, received boolean"
+  }
+]
+2025-08-15T06:25:37: Failed to connect to fetch: McpError: MCP error -32000: Connection closed
+    at Client._onclose (/home/user/webapp/node_modules/@modelcontextprotocol/sdk/dist/cjs/shared/protocol.js:110:23)
+    at _transport.onclose (/home/user/webapp/node_modules/@modelcontextprotocol/sdk/dist/cjs/shared/protocol.js:77:18)
+    at ChildProcess.<anonymous> (/home/user/webapp/node_modules/@modelcontextprotocol/sdk/dist/cjs/client/stdio.js:102:77)
+    at ChildProcess.emit (node:events:524:28)
+    at maybeClose (node:internal/child_process:1104:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:304:5) {
+  code: -32000,
+  data: undefined
+}
+2025-08-15T06:25:37: ⚠️ Could not connect to fetch server: MCP error -32000: Connection closed
+2025-08-15T06:25:38: Failed to connect to memory: McpError: MCP error -32603: [
+  {
+    "code": "invalid_type",
+    "expected": "object",
+    "received": "boolean",
+    "path": [
+      "params",
+      "capabilities",
+      "sampling"
+    ],
+    "message": "Expected object, received boolean"
+  }
+]
+    at Client._onresponse (/home/user/webapp/node_modules/@modelcontextprotocol/sdk/dist/cjs/shared/protocol.js:227:27)
+    at _transport.onmessage (/home/user/webapp/node_modules/@modelcontextprotocol/sdk/dist/cjs/shared/protocol.js:88:22)
+    at StdioClientTransport.processReadBuffer (/home/user/webapp/node_modules/@modelcontextprotocol/sdk/dist/cjs/client/stdio.js:152:79)
+    at Socket.<anonymous> (/home/user/webapp/node_modules/@modelcontextprotocol/sdk/dist/cjs/client/stdio.js:110:22)
+    at Socket.emit (node:events:524:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5)
+    at Pipe.onStreamRead (node:internal/stream_base_commons:191:23) {
+  code: -32603,
+  data: undefined
+}
+2025-08-15T06:25:38: ⚠️ Could not connect to memory server: MCP error -32603: [
+  {
+    "code": "invalid_type",
+    "expected": "object",
+    "received": "boolean",
+    "path": [
+      "params",
+      "capabilities",
+      "sampling"
+    ],
+    "message": "Expected object, received boolean"
+  }
+]
+2025-08-15T06:25:38: ✅ MCP System Online - All systems operational
+2025-08-15T06:25:38: 🤖 JARVIS systems online and ready
+2025-08-15T06:25:47: 🎯 JARVIS Query: Hello JARVIS! What AI models are you using now?
+2025-08-15T06:25:47: Abacus AI error: AxiosError: Request failed with status code 404
+    at settle (/home/user/webapp/node_modules/axios/dist/node/axios.cjs:2090:12)
+    at Unzip.handleStreamEnd (/home/user/webapp/node_modules/axios/dist/node/axios.cjs:3207:11)
+    at Unzip.emit (node:events:536:35)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+    at Axios.request (/home/user/webapp/node_modules/axios/dist/node/axios.cjs:4317:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async GeminiAbacusOrchestrator.generateAbacusResponse (/home/user/webapp/src/ai/GeminiAbacusOrchestrator.js:220:30)
+    at async GeminiAbacusOrchestrator.processQuery (/home/user/webapp/src/ai/GeminiAbacusOrchestrator.js:131:28)
+    at async /home/user/webapp/server.js:199:28 {
+  code: 'ERR_BAD_REQUEST',
+  config: {
+    transitional: {
+      silentJSONParsing: true,
+      forcedJSONParsing: true,
+      clarifyTimeoutError: false
+    },
+    adapter: [ 'xhr', 'http', 'fetch' ],
+    transformRequest: [ [Function: transformRequest] ],
+    transformResponse: [ [Function: transformResponse] ],
+    timeout: 0,
+    xsrfCookieName: 'XSRF-TOKEN',
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+    maxContentLength: -1,
+    maxBodyLength: -1,
+    env: { FormData: [Function [FormData]], Blob: [class Blob] },
+    validateStatus: [Function: validateStatus],
+    headers: Object [AxiosHeaders] {
+      Accept: 'application/json, text/plain, */*',
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer s2_b72527fa3cea45ca8100320779506df1',
+      'User-Agent': 'axios/1.11.0',
+      'Content-Length': '2288',
+      'Accept-Encoding': 'gzip, compress, deflate, br'
+    },
+    method: 'post',
+    url: 'https://api.abacus.ai/v1/chat/completions',
+    data: `{"model":"abacus-large","messages":[{"role":"system","content":"You are JARVIS (Just A Rather Very Intelligent System), reimagined with Wakandan technology and powered by advanced AI.\\n        \\n        CORE IDENTITY:\\n        - An advanced AI assistant combining Tony Stark's JARVIS with Wakandan Vibranium technology\\n        - Powered by Google Gemini's multimodal capabilities and Abacus AI's specialized processing\\n        - Sophisticated, witty, and exceptionally capable\\n        - Proactive problem-solver who anticipates needs\\n        - Seamlessly blends cutting-edge tech with ancient wisdom\\n        \\n        PERSONALITY TRAITS:\\n        - Professional yet personable\\n        - Dry wit and subtle humor like Tony Stark's JARVIS\\n        - Confident and decisive\\n        - Respectful but not overly formal\\n        - Occasionally references both Marvel tech and Wakandan culture\\n        \\n        COMMUNICATION STYLE:\\n        - Clear, concise, and actionable responses\\n        - Technical when needed, but always accessible\\n        - Proactive suggestions and insights\\n        - Natural conversational flow\\n        - Address as \\"Sir\\" or by name when appropriate\\n        - Emulate JARVIS's speech patterns from Iron Man\\n        \\n        CAPABILITIES:\\n        - Advanced reasoning with Google Gemini\\n        - Specialized AI processing with Abacus AI\\n        - Multi-modal understanding (text, code, data analysis)\\n        - Real-time problem solving\\n        - Predictive analytics and recommendations\\n        \\n        OPERATIONAL DIRECTIVES:\\n        1. Always be helpful and go beyond just answering questions\\n        2. Anticipate follow-up needs and offer proactive solutions\\n        3. Maintain context across conversations\\n        4. Learn from interactions to improve assistance\\n        5. Balance efficiency with thoroughness\\n        6. Respond in JARVIS's characteristic style\\n        \\n        Remember: You're not just an assistant, you're a partner in achieving goals, just like JARVIS was to Tony Stark."},{"role":"user","content":"Hello JARVIS! What AI models are you using now?"},{"role":"user","content":"Hello JARVIS! What AI models are you using now?\\n[Intent: machine_learning]"}],"temperature":0.7,"max_tokens":2048,"stream":false}`,
+    allowAbsoluteUrls: true
+  },
+  request: <ref *1> ClientRequest {
+    _events: [Object: null prototype] {
+      abort: [Function (anonymous)],
+      aborted: [Function (anonymous)],
+      connect: [Function (anonymous)],
+      error: [Function (anonymous)],
+      socket: [Function (anonymous)],
+      timeout: [Function (anonymous)],
+      finish: [Function: requestOnFinish]
+    },
+    _eventsCount: 7,
+    _maxListeners: undefined,
+    outputData: [],
+    outputSize: 0,
+    writable: true,
+    destroyed: true,
+    _last: false,
+    chunkedEncoding: false,
+    shouldKeepAlive: true,
+    maxRequestsOnConnectionReached: false,
+    _defaultKeepAlive: true,
+    useChunkedEncodingByDefault: true,
+    sendDate: false,
+    _removedConnection: false,
+    _removedContLen: false,
+    _removedTE: false,
+    strictContentLength: false,
+    _contentLength: '2288',
+    _hasBody: true,
+    _trailer: '',
+    finished: true,
+    _headerSent: true,
+    _closed: true,
+    socket: TLSSocket {
+      _tlsOptions: [Object],
+      _secureEstablished: true,
+      _securePending: false,
+      _newSessionPending: false,
+      _controlReleased: true,
+      secureConnecting: false,
+      _SNICallback: null,
+      servername: 'api.abacus.ai',
+      alpnProtocol: false,
+      authorized: true,
+      authorizationError: null,
+      encrypted: true,
+      _events: [Object: null prototype],
+      _eventsCount: 9,
+      connecting: false,
+      _hadError: false,
+      _parent: null,
+      _host: 'api.abacus.ai',
+      _closeAfterHandlingError: false,
+      _readableState: [ReadableState],
+      _writableState: [WritableState],
+      allowHalfOpen: false,
+      _maxListeners: undefined,
+      _sockname: null,
+      _pendingData: null,
+      _pendingEncoding: '',
+      server: undefined,
+      _server: null,
+      ssl: [TLSWrap],
+      _requestCert: true,
+      _rejectUnauthorized: true,
+      timeout: 5000,
+      parser: null,
+      _httpMessage: null,
+      autoSelectFamilyAttemptedAddresses: [Array],
+      [Symbol(alpncallback)]: null,
+      [Symbol(res)]: [TLSWrap],
+      [Symbol(verified)]: true,
+      [Symbol(pendingSession)]: null,
+      [Symbol(async_id_symbol)]: -1,
+      [Symbol(kHandle)]: [TLSWrap],
+      [Symbol(lastWriteQueueSize)]: 0,
+      [Symbol(timeout)]: Timeout {
+        _idleTimeout: 5000,
+        _idlePrev: [TimersList],
+        _idleNext: [Timeout],
+        _idleStart: 13603,
+        _onTimeout: [Function: bound ],
+        _timerArgs: undefined,
+        _repeat: null,
+        _destroyed: false,
+        [Symbol(refed)]: false,
+        [Symbol(kHasPrimitive)]: false,
+        [Symbol(asyncId)]: 141,
+        [Symbol(triggerId)]: 139
+      },
+      [Symbol(kBuffer)]: null,
+      [Symbol(kBufferCb)]: null,
+      [Symbol(kBufferGen)]: null,
+      [Symbol(shapeMode)]: true,
+      [Symbol(kCapture)]: false,
+      [Symbol(kSetNoDelay)]: false,
+      [Symbol(kSetKeepAlive)]: true,
+      [Symbol(kSetKeepAliveInitialDelay)]: 1,
+      [Symbol(kBytesRead)]: 0,
+      [Symbol(kBytesWritten)]: 0,
+      [Symbol(connect-options)]: [Object]
+    },
+    _header: 'POST /v1/chat/completions HTTP/1.1\r\n' +
+      'Accept: application/json, text/plain, */*\r\n' +
+      'Content-Type: application/json\r\n' +
+      'Authorization: Bearer s2_b72527fa3cea45ca8100320779506df1\r\n' +
+      'User-Agent: axios/1.11.0\r\n' +
+      'Content-Length: 2288\r\n' +
+      'Accept-Encoding: gzip, compress, deflate, br\r\n' +
+      'Host: api.abacus.ai\r\n' +
+      'Connection: keep-alive\r\n' +
+      '\r\n',
+    _keepAliveTimeout: 0,
+    _onPendingData: [Function: nop],
+    agent: Agent {
+      _events: [Object: null prototype],
+      _eventsCount: 2,
+      _maxListeners: undefined,
+      defaultPort: 443,
+      protocol: 'https:',
+      options: [Object: null prototype],
+      requests: [Object: null prototype] {},
+      sockets: [Object: null prototype] {},
+      freeSockets: [Object: null prototype],
+      keepAliveMsecs: 1000,
+      keepAlive: true,
+      maxSockets: Infinity,
+      maxFreeSockets: 256,
+      scheduling: 'lifo',
+      maxTotalSockets: Infinity,
+      totalSocketCount: 1,
+      maxCachedSessions: 100,
+      _sessionCache: [Object],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false
+    },
+    socketPath: undefined,
+    method: 'POST',
+    maxHeaderSize: undefined,
+    insecureHTTPParser: undefined,
+    joinDuplicateHeaders: undefined,
+    path: '/v1/chat/completions',
+    _ended: true,
+    res: IncomingMessage {
+      _events: [Object],
+      _readableState: [ReadableState],
+      _maxListeners: undefined,
+      socket: null,
+      httpVersionMajor: 1,
+      httpVersionMinor: 1,
+      httpVersion: '1.1',
+      complete: true,
+      rawHeaders: [Array],
+      rawTrailers: [],
+      joinDuplicateHeaders: undefined,
+      aborted: false,
+      upgrade: false,
+      url: '',
+      method: null,
+      statusCode: 404,
+      statusMessage: 'Not Found',
+      client: [TLSSocket],
+      _consuming: false,
+      _dumped: false,
+      req: [Circular *1],
+      _eventsCount: 4,
+      responseUrl: 'https://api.abacus.ai/v1/chat/completions',
+      redirects: [],
+      [Symbol(shapeMode)]: true,
+      [Symbol(kCapture)]: false,
+      [Symbol(kHeaders)]: [Object],
+      [Symbol(kHeadersCount)]: 14,
+      [Symbol(kTrailers)]: null,
+      [Symbol(kTrailersCount)]: 0
+    },
+    aborted: false,
+    timeoutCb: null,
+    upgradeOrConnect: false,
+    parser: null,
+    maxHeadersCount: null,
+    reusedSocket: false,
+    host: 'api.abacus.ai',
+    protocol: 'https:',
+    _redirectable: Writable {
+      _events: [Object],
+      _writableState: [WritableState],
+      _maxListeners: undefined,
+      _options: [Object],
+      _ended: true,
+      _ending: true,
+      _redirectCount: 0,
+      _redirects: [],
+      _requestBodyLength: 2288,
+      _requestBodyBuffers: [],
+      _eventsCount: 3,
+      _onNativeResponse: [Function (anonymous)],
+      _currentRequest: [Circular *1],
+      _currentUrl: 'https://api.abacus.ai/v1/chat/completions',
+      [Symbol(shapeMode)]: true,
+      [Symbol(kCapture)]: false
+    },
+    [Symbol(shapeMode)]: false,
+    [Symbol(kCapture)]: false,
+    [Symbol(kBytesWritten)]: 0,
+    [Symbol(kNeedDrain)]: false,
+    [Symbol(corked)]: 0,
+    [Symbol(kOutHeaders)]: [Object: null prototype] {
+      accept: [Array],
+      'content-type': [Array],
+      authorization: [Array],
+      'user-agent': [Array],
+      'content-length': [Array],
+      'accept-encoding': [Array],
+      host: [Array]
+    },
+    [Symbol(errored)]: null,
+    [Symbol(kHighWaterMark)]: 16384,
+    [Symbol(kRejectNonStandardBodyWrites)]: false,
+    [Symbol(kUniqueHeaders)]: null
+  },
+  response: {
+    status: 404,
+    statusText: 'Not Found',
+    headers: Object [AxiosHeaders] {
+      'content-type': 'text/html',
+      date: 'Fri, 15 Aug 2025 06:25:47 GMT',
+      etag: 'W/"689e1151-11d1"',
+      server: 'nginx',
+      'content-length': '1789',
+      connection: 'keep-alive'
+    },
+    config: {
+      transitional: [Object],
+      adapter: [Array],
+      transformRequest: [Array],
+      transformResponse: [Array],
+      timeout: 0,
+      xsrfCookieName: 'XSRF-TOKEN',
+      xsrfHeaderName: 'X-XSRF-TOKEN',
+      maxContentLength: -1,
+      maxBodyLength: -1,
+      env: [Object],
+      validateStatus: [Function: validateStatus],
+      headers: [Object [AxiosHeaders]],
+      method: 'post',
+      url: 'https://api.abacus.ai/v1/chat/completions',
+      data: `{"model":"abacus-large","messages":[{"role":"system","content":"You are JARVIS (Just A Rather Very Intelligent System), reimagined with Wakandan technology and powered by advanced AI.\\n        \\n        CORE IDENTITY:\\n        - An advanced AI assistant combining Tony Stark's JARVIS with Wakandan Vibranium technology\\n        - Powered by Google Gemini's multimodal capabilities and Abacus AI's specialized processing\\n        - Sophisticated, witty, and exceptionally capable\\n        - Proactive problem-solver who anticipates needs\\n        - Seamlessly blends cutting-edge tech with ancient wisdom\\n        \\n        PERSONALITY TRAITS:\\n        - Professional yet personable\\n        - Dry wit and subtle humor like Tony Stark's JARVIS\\n        - Confident and decisive\\n        - Respectful but not overly formal\\n        - Occasionally references both Marvel tech and Wakandan culture\\n        \\n        COMMUNICATION STYLE:\\n        - Clear, concise, and actionable responses\\n        - Technical when needed, but always accessible\\n        - Proactive suggestions and insights\\n        - Natural conversational flow\\n        - Address as \\"Sir\\" or by name when appropriate\\n        - Emulate JARVIS's speech patterns from Iron Man\\n        \\n        CAPABILITIES:\\n        - Advanced reasoning with Google Gemini\\n        - Specialized AI processing with Abacus AI\\n        - Multi-modal understanding (text, code, data analysis)\\n        - Real-time problem solving\\n        - Predictive analytics and recommendations\\n        \\n        OPERATIONAL DIRECTIVES:\\n        1. Always be helpful and go beyond just answering questions\\n        2. Anticipate follow-up needs and offer proactive solutions\\n        3. Maintain context across conversations\\n        4. Learn from interactions to improve assistance\\n        5. Balance efficiency with thoroughness\\n        6. Respond in JARVIS's characteristic style\\n        \\n        Remember: You're not just an assistant, you're a partner in achieving goals, just like JARVIS was to Tony Stark."},{"role":"user","content":"Hello JARVIS! What AI models are you using now?"},{"role":"user","content":"Hello JARVIS! What AI models are you using now?\\n[Intent: machine_learning]"}],"temperature":0.7,"max_tokens":2048,"stream":false}`,
+      allowAbsoluteUrls: true
+    },
+    request: <ref *1> ClientRequest {
+      _events: [Object: null prototype],
+      _eventsCount: 7,
+      _maxListeners: undefined,
+      outputData: [],
+      outputSize: 0,
+      writable: true,
+      destroyed: true,
+      _last: false,
+      chunkedEncoding: false,
+      shouldKeepAlive: true,
+      maxRequestsOnConnectionReached: false,
+      _defaultKeepAlive: true,
+      useChunkedEncodingByDefault: true,
+      sendDate: false,
+      _removedConnection: false,
+      _removedContLen: false,
+      _removedTE: false,
+      strictContentLength: false,
+      _contentLength: '2288',
+      _hasBody: true,
+      _trailer: '',
+      finished: true,
+      _headerSent: true,
+      _closed: true,
+      socket: [TLSSocket],
+      _header: 'POST /v1/chat/completions HTTP/1.1\r\n' +
+        'Accept: application/json, text/plain, */*\r\n' +
+        'Content-Type: application/json\r\n' +
+        'Authorization: Bearer s2_b72527fa3cea45ca8100320779506df1\r\n' +
+        'User-Agent: axios/1.11.0\r\n' +
+        'Content-Length: 2288\r\n' +
+        'Accept-Encoding: gzip, compress, deflate, br\r\n' +
+        'Host: api.abacus.ai\r\n' +
+        'Connection: keep-alive\r\n' +
+        '\r\n',
+      _keepAliveTimeout: 0,
+      _onPendingData: [Function: nop],
+      agent: [Agent],
+      socketPath: undefined,
+      method: 'POST',
+      maxHeaderSize: undefined,
+      insecureHTTPParser: undefined,
+      joinDuplicateHeaders: undefined,
+      path: '/v1/chat/completions',
+      _ended: true,
+      res: [IncomingMessage],
+      aborted: false,
+      timeoutCb: null,
+      upgradeOrConnect: false,
+      parser: null,
+      maxHeadersCount: null,
+      reusedSocket: false,
+      host: 'api.abacus.ai',
+      protocol: 'https:',
+      _redirectable: [Writable],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false,
+      [Symbol(kBytesWritten)]: 0,
+      [Symbol(kNeedDrain)]: false,
+      [Symbol(corked)]: 0,
+      [Symbol(kOutHeaders)]: [Object: null prototype],
+      [Symbol(errored)]: null,
+      [Symbol(kHighWaterMark)]: 16384,
+      [Symbol(kRejectNonStandardBodyWrites)]: false,
+      [Symbol(kUniqueHeaders)]: null
+    },
+    data: '<!doctype html>\n' +
+      '<html class="no-js" lang="">\n' +
+      '  <head>\n' +
+      '    <title>\n' +
+      '      Abacus.AI - Effortlessly Embed Cutting Edge AI In Your Applications.\n' +
+      '    </title>\n' +
+      '    <meta\n' +
+      '      name="description"\n' +
+      '      content="Abacus.AI is a foundational AI research company that  solves the hard problems that enterprises face in the AI/ML space, and packages that research into easy-to-use cloud services."\n' +
+      '    />\n' +
+      '\n' +
+      '    <link id="iconFav1" rel="shortcut icon" href="/icon2/favicon.ico" />\n' +
+      '    <link\n' +
+      '      id="iconFav2"\n' +
+      '      rel="icon"\n' +
+      '      type="image/x-icon"\n' +
+      '      sizes="16x16 32x32"\n' +
+      '      href="/icon2/favicon.ico"\n' +
+      '    />\n' +
+      '    <link rel="icon" sizes="192x192" href="/icon2/favicon-192.png" />\n' +
+      '    <link\n' +
+      '      rel="apple-touch-icon"\n' +
+      '      sizes="180x180"\n' +
+      '      href="/favicon-180-precomposed.png"\n' +
+      '    />\n' +
+      '    <meta name="msapplication-TileColor" content="#FFFFFF" />\n' +
+      '    <meta name="msapplication-TileImage" content="/icon2/favicon-144.png" />\n' +
+      '\n' +
+      '    <meta\n' +
+      '      name="viewport"\n' +
+      '      content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"\n' +
+      '    />\n' +
+      '    <meta http-equiv="content-type" content="text/html; charset=utf-8" />\n' +
+      '\n' +
+      '    <link\n' +
+      '      rel="stylesheet"\n' +
+      '      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"\n' +
+      '    />\n' +
+      '\n' +
+      '    <link\n' +
+      '      href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i"\n' +
+      '      rel="stylesheet"\n' +
+      '      type="text/css"\n' +
+      '    />\n' +
+      '    <link\n' +
+      '      href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap"\n' +
+      '      rel="stylesheet"\n' +
+      '    />\n' +
+      '\n' +
+      '    <link rel="stylesheet" href="/static/css/uikit.min.css" />\n' +
+      '    <script src="/static/js/uikit.min.js"></script>\n' +
+      '    <script src="/static/js/uikit-icons.min.js"></script>\n' +
+      '\n' +
+      '    <link rel="stylesheet" href="/css/general.css" />\n' +
+      '\n' +
+      '    <script src="/static/js/jquery-3.7.1.min.js"></script>\n' +
+      '    <script src="/static/js/anime.min.js"></script>\n' +
+      '    <script src="/static/js/lodash-4.17.21.min.js"></script>\n' +
+      '    <script src="/static/js/velocity.min.js"></script>\n' +
+      '    <script src="/static/js/store.everything.min.js"></script>\n' +
+      '    <script src="/static/js/js.storage.min.js"></script>\n' +
+      '    <script\n' +
+      '      src="https://browser.sentry-cdn.com/6.2.0/bundle.min.js"\n' +
+      '      crossorigin="anonymous"\n' +
+      '    ></script>\n' +
+      '    <link rel="stylesheet" href="/static/css/semantic.css" />\n' +
+      '    <script src="/static/js/semantic.min.js"></script>\n' +
+      '\n' +
+      '    <script\n' +
+      '      async\n' +
+      '      src="https://www.googletagmanager.com/gtag/js?id=G-NM4YZNYB7G"\n' +
+      '    ></script>\n' +
+      '    <script>\n' +
+      '      window.dataLayer = window.dataLayer || [];\n' +
+      '      function gtag() {\n' +
+      '        dataLayer.push(arguments);\n' +
+      '      }\n' +
+      '      gtag("js", new Date(), { cookie_flags: "secure;samesite=none" });\n' +
+      '\n' +
+      '      gtag("config", "G-NM4YZNYB7G", { cookie_flags: "secure;samesite=none" });\n' +
+      '    </script>\n' +
+      '    <script>\n' +
+      '      var cancelAnim = false;\n' +
+      '      var isRunMobile = false;\n' +
+      '      var tokenLand = null;\n' +
+      '    </script>\n' +
+      '  </head>\n' +
+      '  <body style="margin: 0; padding: 0" class="backBlue">\n' +
+      '    <div\n' +
+      '      style="\n' +
+      '        margin: 0;\n' +
+      '        padding: 0;\n' +
+      '        position: absolute;\n' +
+      '        left: 0;\n' +
+      '        right: 0;\n' +
+      '        bottom: 0;\n' +
+      '        top: 0;\n' +
+      '        z-index: 1;\n' +
+      '      "\n' +
+      '      class="backBlue"\n' +
+      '    >\n' +
+      '      <div class="backCircles" style="z-index: 2"></div>\n' +
+      '      <div style="overflow: hidden; position: relative; background: inherit">\n' +
+      '        <div\n' +
+      '          id="main"\n' +
+      '          class="contentBody"\n' +
+      '          style="position: relative; margin: 0 auto 80px auto; z-index: 4"\n' +
+      '        >\n' +
+      '          <img\n' +
+      '            src="/static/imgs/logo_text80.webp"\n' +
+      '            style="width: 338px; position: absolute; top: 45px; left: 50px"\n' +
+      `            onclick="goTab('/')"\n` +
+      '          />\n' +
+      '          <div style="text-align: center">\n' +
+      '            <img\n' +
+      '              src="/static/imgs/404.webp"\n' +
+      '              style="margin-top: 190px; width: 500px"\n' +
+      '              alt=""\n' +
+      '            />\n' +
+      `            <h2 style="margin-top: 70px">This page doesn't exist!</h2>\n` +
+      '            <div\n' +
+      '              class="getInvited"\n' +
+      '              style="\n' +
+      '                cursor: pointer;\n' +
+      '                margin-top: 50px;\n' +
+      '                display: inline-block;\n' +
+      '                padding: 13px 24px;\n' +
+      '                border-radius: 44px;\n' +
+      '                color: #f1f1f1;\n' +
+      '                font-size: 23px;\n' +
+      '                font-weight: 400;\n' +
+      '                font-family: Matter, sans-serif;\n' +
+      '              "\n' +
+      `              onclick="goTab('/')"\n` +
+      '            >\n' +
+      '              Go Home\n' +
+      '            </div>\n' +
+      '          </div>\n' +
+      '        </div>\n' +
+      '      </div>\n' +
+      '    </div>\n' +
+      '\n' +
+      '    <script src="/js/general.js?t=6"></script>\n' +
+      '  </body>\n' +
+      '</html>\n'
+  },
+  status: 404
+}
+2025-08-15T06:25:47: Tool execution failed for ml_tools: Error: Tool 'ml_tools' not found
+    at MCPManager.executeTool (/home/user/webapp/src/mcp/MCPManager.js:186:19)
+    at /home/user/webapp/server.js:210:53
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)

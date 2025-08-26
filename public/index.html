@@ -566,12 +566,48 @@
             setInterval(updateTime, 1000);
             setupChat();
             setupVoice();
+            checkJARVISStatus();
             
             // Check for PWA installation
             if ('serviceWorker' in navigator) {
                 navigator.serviceWorker.register('data:application/javascript;base64,c2VsZi5hZGRFdmVudExpc3RlbmVyKCdpbnN0YWxsJywgZnVuY3Rpb24oZXZlbnQpIHsgZXZlbnQud2FpdFVudGlsKGNhY2hlcy5vcGVuKCd3YWthbmRhbi1ncmlvdC12MScpLnRoZW4oZnVuY3Rpb24oY2FjaGUpIHsgcmV0dXJuIGNhY2hlLmFkZEFsbChbJy8nXSk7IH0pKTsgfSk7');
             }
         });
+        
+        // Check JARVIS system status
+        async function checkJARVISStatus() {
+            try {
+                const response = await fetch('/api/jarvis/status');
+                if (response.ok) {
+                    const status = await response.json();
+                    console.log('🤖 JARVIS Status:', status);
+                    
+                    // Update UI based on capabilities
+                    if (status.capabilities.ai.available) {
+                        console.log('✅ Advanced AI: Online');
+                        const title = document.querySelector('.title');
+                        if (title) {
+                            title.textContent = 'JARVIS-Vibranium Network';
+                        }
+                    }
+                    
+                    if (status.capabilities.mcp.connected) {
+                        console.log('✅ MCP Tools: Connected');
+                        console.log('Available tools:', status.capabilities.mcp.tools);
+                    }
+                    
+                    // Update greeting message based on capabilities
+                    if (status.capabilities.ai.available || status.capabilities.mcp.connected) {
+                        const greetingMsg = document.querySelector('.griot-message .message-content');
+                        if (greetingMsg) {
+                            greetingMsg.textContent = "Good day, Sir. I am JARVIS, your advanced AI assistant enhanced with Wakandan Vibranium technology. All systems are operational. How may I assist you today?";
+                        }
+                    }
+                }
+            } catch (error) {
+                console.log('Running in standard Griot mode');
+            }
+        }
 
         // Create animated star field
         function createStarField() {
@@ -793,7 +829,7 @@
             });
         }
 
-        // Send message function
+        // Send message function - Enhanced with JARVIS capabilities
         async function sendMessage() {
             const messageInput = document.getElementById('message-input');
             const message = messageInput.value.trim();
@@ -806,7 +842,44 @@
             showTypingIndicator();
             
             try {
-                // Try to use API endpoint if available
+                // First try the advanced JARVIS endpoint
+                const jarvisResponse = await fetch('/api/jarvis/query', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ 
+                        query: message,
+                        context: {
+                            timestamp: new Date().toISOString(),
+                            source: 'web-ui'
+                        }
+                    })
+                });
+                
+                if (jarvisResponse.ok) {
+                    const data = await jarvisResponse.json();
+                    hideTypingIndicator();
+                    
+                    // Add JARVIS response with enhanced formatting
+                    addMessage(data.response, 'griot', data.metadata);
+                    
+                    // Show capabilities if tools were used
+                    if (data.metadata?.toolResults && Object.keys(data.metadata.toolResults).length > 0) {
+                        console.log('🔧 Tools used:', Object.keys(data.metadata.toolResults));
+                    }
+                    
+                    if (autoSpeak) {
+                        speakText(data.response);
+                    }
+                    return;
+                }
+            } catch (error) {
+                console.log('JARVIS endpoint not available, trying Griot endpoint...');
+            }
+            
+            // Fallback to Griot endpoint
+            try {
                 const response = await fetch('/api/griot/wisdom', {
                     method: 'POST',
                     headers: {
@@ -840,8 +913,8 @@
             }
         }
 
-        // Add message to chat
-        function addMessage(text, sender) {
+        // Add message to chat - Enhanced with metadata display
+        function addMessage(text, sender, metadata = null) {
             const chatMessages = document.getElementById('chat-messages');
             const messageDiv = document.createElement('div');
             messageDiv.classList.add('message', `${sender}-message`);
@@ -849,6 +922,23 @@
             const contentDiv = document.createElement('div');
             contentDiv.classList.add('message-content');
             contentDiv.textContent = text;
+            
+            // Add metadata indicator if available
+            if (metadata) {
+                if (metadata.model) {
+                    const modelBadge = document.createElement('span');
+                    modelBadge.style.cssText = 'display: inline-block; margin-left: 8px; font-size: 10px; color: var(--vibranium-blue); opacity: 0.7;';
+                    modelBadge.textContent = `[${metadata.model}]`;
+                    contentDiv.appendChild(modelBadge);
+                }
+                
+                if (metadata.toolsUsed && metadata.toolsUsed.length > 0) {
+                    const toolsBadge = document.createElement('span');
+                    toolsBadge.style.cssText = 'display: block; margin-top: 4px; font-size: 10px; color: var(--kimoyo-orange); opacity: 0.7;';
+                    toolsBadge.textContent = `🔧 Tools: ${metadata.toolsUsed.join(', ')}`;
+                    contentDiv.appendChild(toolsBadge);
+                }
+            }
             
             messageDiv.appendChild(contentDiv);
             chatMessages.appendChild(messageDiv);
