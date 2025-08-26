@@ -113,6 +113,9 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+// Serve static files from public directory
+app.use(express.static('public'));
+
 // Serve static files from examples directory
 app.use('/demo', express.static('examples'));
 
@@ -125,14 +128,21 @@ app.get('/api/metrics', metricsHandler);
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {
-    res.json({ 
-        status: 'healthy', 
-        service: 'G Assistant Real-Time',
-        timestamp: new Date().toISOString(),
-        memory_stats: memoryManager.getStats(),
-        semantic_stats: semanticMemoryManager.getDatabaseStats(),
-        voice_stats: rtVoiceService.getServiceStats()
-    });
+    try {
+        res.json({ 
+            status: 'healthy', 
+            service: 'G Assistant Real-Time',
+            timestamp: new Date().toISOString(),
+            memory_initialized: !!memoryManager,
+            semantic_initialized: !!semanticMemoryManager,
+            voice_initialized: !!rtVoiceService
+        });
+    } catch (error) {
+        res.status(500).json({ 
+            status: 'error', 
+            error: error.message 
+        });
+    }
 });
 
 // Simple chat endpoint for G Assistant
