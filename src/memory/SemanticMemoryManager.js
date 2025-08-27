@@ -24,29 +24,30 @@ class SemanticMemoryManager extends MemoryManager {
      */
     async storeMemory(type, content, context = {}) {
         try {
-            // Store in traditional memory system
-            const memoryResult = await super.storeMemory(type, content, context);
+            // Store in traditional memory system using addMessage
+            const messageId = this.addMessage(type, content, context.conversationId || 'main', context);
             
-            if (memoryResult.success) {
+            if (messageId) {
                 // Add to vector database for semantic search
-                const vectorId = `memory_${memoryResult.memoryId}`;
+                const vectorId = `memory_${messageId}`;
                 const vectorContent = this.createVectorContent(type, content, context);
                 
                 await this.vectorService.addDocument(vectorId, vectorContent, {
-                    memoryId: memoryResult.memoryId,
+                    memoryId: messageId,
                     type,
                     context,
                     category: 'memory'
                 });
                 
                 return {
-                    ...memoryResult,
+                    success: true,
+                    memoryId: messageId,
                     vectorIndexed: true,
                     semanticSearchEnabled: true
                 };
             }
             
-            return memoryResult;
+            return { success: false, error: 'Failed to store message' };
         } catch (error) {
             console.error('Error storing semantic memory:', error);
             return {
@@ -72,10 +73,10 @@ class SemanticMemoryManager extends MemoryManager {
             let results = [];
 
             // Traditional keyword search
-            const traditionalResults = await super.retrieveMemories(query, { 
-                type, 
-                limit: maxResults 
-            });
+            const traditionalResults = {
+                memories: this.searchMemory(query, maxResults) || [],
+                success: true
+            };
 
             if (useSemanticSearch && this.semanticSearchEnabled) {
                 // Semantic vector search
@@ -88,7 +89,7 @@ class SemanticMemoryManager extends MemoryManager {
                 if (semanticResults.success) {
                     // Combine and deduplicate results
                     const combinedResults = await this.combineSearchResults(
-                        traditionalResults.memories || [],
+                        traditionalResults.memories,
                         semanticResults.results,
                         query
                     );
