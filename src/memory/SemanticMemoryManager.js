@@ -407,7 +407,7 @@ class SemanticMemoryManager extends MemoryManager {
      */
     async migrateExistingMemories() {
         try {
-            const allMemories = await this.getAllMemories();
+            const allMemories = this.getConversationHistory('main', 1000);
             let migrated = 0;
             
             if (allMemories && allMemories.length > 0) {
