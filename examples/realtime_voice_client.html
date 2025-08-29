@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G Assistant - Real-Time Voice Client</title>
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #0a0a0a;
+            color: #ffffff;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+        }
+        
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            justify-content: center;
+        }
+        
+        button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        
+        .primary { background: #4CAF50; color: white; }
+        .primary:hover { background: #45a049; }
+        .primary:disabled { background: #666; cursor: not-allowed; }
+        
+        .secondary { background: #2196F3; color: white; }
+        .secondary:hover { background: #1976D2; }
+        
+        .danger { background: #f44336; color: white; }
+        .danger:hover { background: #da190b; }
+        
+        .status {
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        
+        .status.connected { background: #4CAF50; }
+        .status.disconnected { background: #f44336; }
+        .status.recording { background: #FF9800; }
+        .status.processing { background: #2196F3; }
+        
+        .conversation {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 20px 0;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        .message {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        
+        .message.user {
+            background: #2196F3;
+            text-align: right;
+        }
+        
+        .message.assistant {
+            background: #4CAF50;
+        }
+        
+        .message.system {
+            background: #666;
+            font-style: italic;
+            text-align: center;
+        }
+        
+        .capabilities {
+            background: #333;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+            font-family: monospace;
+            font-size: 12px;
+        }
+        
+        .audio-visualizer {
+            width: 100%;
+            height: 60px;
+            background: #333;
+            border-radius: 5px;
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🤖 G Assistant</h1>
+        <p>Real-Time Voice Communication Demo</p>
+    </div>
+
+    <div class="status" id="connectionStatus">Connecting to G Assistant...</div>
+
+    <div class="controls">
+        <button id="connectBtn" class="secondary">Connect</button>
+        <button id="startRecordingBtn" class="primary" disabled>Start Recording</button>
+        <button id="stopRecordingBtn" class="danger" disabled>Stop Recording</button>
+        <button id="testTextBtn" class="secondary">Send Test Message</button>
+    </div>
+
+    <div class="audio-visualizer" id="audioVisualizer">
+        🎤 Audio input will be visualized here
+    </div>
+
+    <div class="conversation" id="conversation"></div>
+
+    <div class="capabilities" id="capabilities">
+        Loading capabilities...
+    </div>
+
+    <script>
+        class RealTimeVoiceClient {
+            constructor() {
+                this.socket = null;
+                this.mediaRecorder = null;
+                this.audioStream = null;
+                this.isRecording = false;
+                this.isConnected = false;
+                
+                this.initializeUI();
+                this.connect();
+            }
+
+            initializeUI() {
+                this.connectBtn = document.getElementById('connectBtn');
+                this.startRecordingBtn = document.getElementById('startRecordingBtn');
+                this.stopRecordingBtn = document.getElementById('stopRecordingBtn');
+                this.testTextBtn = document.getElementById('testTextBtn');
+                this.connectionStatus = document.getElementById('connectionStatus');
+                this.conversation = document.getElementById('conversation');
+                this.capabilities = document.getElementById('capabilities');
+                this.audioVisualizer = document.getElementById('audioVisualizer');
+
+                this.connectBtn.onclick = () => this.connect();
+                this.startRecordingBtn.onclick = () => this.startRecording();
+                this.stopRecordingBtn.onclick = () => this.stopRecording();
+                this.testTextBtn.onclick = () => this.sendTestMessage();
+            }
+
+            connect() {
+                const serverUrl = 'https://5050-iun8ew6j9cs5qvhf3kfxo.e2b.dev';
+                
+                this.addMessage('system', `Connecting to G Assistant at ${serverUrl}...`);
+                
+                this.socket = io(serverUrl, {
+                    transports: ['websocket', 'polling']
+                });
+
+                this.socket.on('connect', () => {
+                    this.isConnected = true;
+                    this.updateConnectionStatus('connected', 'Connected to G Assistant');
+                    this.connectBtn.disabled = true;
+                    this.startRecordingBtn.disabled = false;
+                    this.addMessage('system', '✅ Connected successfully');
+                });
+
+                this.socket.on('disconnect', () => {
+                    this.isConnected = false;
+                    this.updateConnectionStatus('disconnected', 'Disconnected from G Assistant');
+                    this.connectBtn.disabled = false;
+                    this.startRecordingBtn.disabled = true;
+                    this.stopRecordingBtn.disabled = true;
+                    this.addMessage('system', '❌ Disconnected');
+                });
+
+                this.socket.on('voice_capabilities', (data) => {
+                    this.capabilities.textContent = JSON.stringify(data, null, 2);
+                });
+
+                this.socket.on('voice_session_started', (data) => {
+                    this.addMessage('system', `🎤 Voice session started (ID: ${data.sessionId})`);
+                });
+
+                this.socket.on('audio_chunk_ack', (data) => {
+                    console.log('Audio chunk acknowledged:', data.sequenceId);
+                });
+
+                this.socket.on('transcription_result', (data) => {
+                    this.addMessage('user', `🗣️ "${data.transcription}" (${data.language})`);
+                });
+
+                this.socket.on('ai_response', (data) => {
+                    this.addMessage('assistant', `🤖 ${data.response}`);
+                });
+
+                this.socket.on('voice_processing', (data) => {
+                    this.updateConnectionStatus('processing', `Processing: ${data.message}`);
+                });
+
+                this.socket.on('voice_response_ready', (data) => {
+                    this.updateConnectionStatus('connected', 'Connected - Ready for input');
+                    // In a full implementation, you would play the audio here
+                    console.log('Voice response ready:', data.text);
+                });
+
+                this.socket.on('voice_error', (error) => {
+                    this.addMessage('system', `❌ Error: ${error.error} (${error.code})`);
+                    this.updateConnectionStatus('connected', 'Connected - Error occurred');
+                });
+
+                this.socket.on('connect_error', (error) => {
+                    this.addMessage('system', `❌ Connection error: ${error.message}`);
+                    this.updateConnectionStatus('disconnected', 'Connection failed');
+                });
+            }
+
+            async startRecording() {
+                if (!this.isConnected) return;
+
+                try {
+                    // Request microphone permission
+                    this.audioStream = await navigator.mediaDevices.getUserMedia({ 
+                        audio: {
+                            echoCancellation: true,
+                            noiseSuppression: true,
+                            autoGainControl: true
+                        } 
+                    });
+
+                    // Create MediaRecorder for WebM format
+                    this.mediaRecorder = new MediaRecorder(this.audioStream, {
+                        mimeType: 'audio/webm'
+                    });
+
+                    let audioChunks = [];
+                    let sequenceId = 0;
+
+                    this.mediaRecorder.ondataavailable = (event) => {
+                        if (event.data.size > 0) {
+                            // Send audio chunk to server in real-time
+                            const reader = new FileReader();
+                            reader.onload = () => {
+                                const base64Audio = reader.result.split(',')[1];
+                                this.socket.emit('audio_chunk', {
+                                    audioData: base64Audio,
+                                    format: 'audio/webm',
+                                    sequenceId: sequenceId++
+                                });
+                            };
+                            reader.readAsDataURL(event.data);
+                        }
+                    };
+
+                    this.mediaRecorder.onstop = () => {
+                        // Signal end of audio stream
+                        this.socket.emit('audio_end', {
+                            timestamp: new Date().toISOString()
+                        });
+                        this.audioStream.getTracks().forEach(track => track.stop());
+                    };
+
+                    // Start recording and send session start event
+                    this.socket.emit('start_voice_session', {
+                        preferences: {
+                            language: 'auto'
+                        }
+                    });
+
+                    this.mediaRecorder.start(1000); // Send chunks every 1000ms
+                    this.isRecording = true;
+                    this.updateConnectionStatus('recording', 'Recording audio...');
+                    this.startRecordingBtn.disabled = true;
+                    this.stopRecordingBtn.disabled = false;
+                    
+                    this.audioVisualizer.innerHTML = '🔴 Recording in progress...';
+                    
+                } catch (error) {
+                    this.addMessage('system', `❌ Microphone error: ${error.message}`);
+                }
+            }
+
+            stopRecording() {
+                if (this.mediaRecorder && this.isRecording) {
+                    this.mediaRecorder.stop();
+                    this.isRecording = false;
+                    this.updateConnectionStatus('processing', 'Processing audio...');
+                    this.startRecordingBtn.disabled = false;
+                    this.stopRecordingBtn.disabled = true;
+                    
+                    this.audioVisualizer.innerHTML = '⏳ Processing audio...';
+                }
+            }
+
+            sendTestMessage() {
+                if (!this.isConnected) return;
+                
+                const testMessage = "Hello G, this is a test message from the real-time voice client!";
+                this.socket.emit('text_message', {
+                    message: testMessage
+                });
+                this.addMessage('user', `💬 ${testMessage}`);
+            }
+
+            updateConnectionStatus(type, message) {
+                this.connectionStatus.className = `status ${type}`;
+                this.connectionStatus.textContent = message;
+            }
+
+            addMessage(type, content) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `message ${type}`;
+                messageDiv.innerHTML = `<div>${content}</div><small>${new Date().toLocaleTimeString()}</small>`;
+                this.conversation.appendChild(messageDiv);
+                this.conversation.scrollTop = this.conversation.scrollHeight;
+            }
+        }
+
+        // Initialize the client when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            new RealTimeVoiceClient();
+        });
+    </script>
+</body>
+</html>

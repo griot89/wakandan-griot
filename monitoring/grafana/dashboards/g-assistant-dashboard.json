@@ -1,0 +1,133 @@
+{
+  "dashboard": {
+    "id": null,
+    "title": "G Assistant Monitoring Dashboard",
+    "tags": ["g-assistant", "monitoring"],
+    "style": "dark",
+    "timezone": "browser",
+    "refresh": "30s",
+    "time": {
+      "from": "now-1h",
+      "to": "now"
+    },
+    "panels": [
+      {
+        "id": 1,
+        "title": "Service Health",
+        "type": "stat",
+        "targets": [
+          {
+            "expr": "up{job=\"g-assistant\"}",
+            "legendFormat": "G Assistant"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "thresholds": {
+              "steps": [
+                {"color": "red", "value": 0},
+                {"color": "green", "value": 1}
+              ]
+            }
+          }
+        },
+        "gridPos": {"h": 8, "w": 6, "x": 0, "y": 0}
+      },
+      {
+        "id": 2,
+        "title": "Request Rate",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "rate(http_requests_total{job=\"g-assistant\"}[5m])",
+            "legendFormat": "Requests/sec"
+          }
+        ],
+        "gridPos": {"h": 8, "w": 9, "x": 6, "y": 0}
+      },
+      {
+        "id": 3,
+        "title": "Response Time",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "histogram_quantile(0.50, rate(http_request_duration_seconds_bucket{job=\"g-assistant\"}[5m]))",
+            "legendFormat": "50th percentile"
+          },
+          {
+            "expr": "histogram_quantile(0.95, rate(http_request_duration_seconds_bucket{job=\"g-assistant\"}[5m]))",
+            "legendFormat": "95th percentile"
+          }
+        ],
+        "gridPos": {"h": 8, "w": 9, "x": 15, "y": 0}
+      },
+      {
+        "id": 4,
+        "title": "Error Rate",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "rate(http_requests_total{job=\"g-assistant\",status=~\"4..\"}[5m])",
+            "legendFormat": "4xx errors"
+          },
+          {
+            "expr": "rate(http_requests_total{job=\"g-assistant\",status=~\"5..\"}[5m])",
+            "legendFormat": "5xx errors"
+          }
+        ],
+        "gridPos": {"h": 8, "w": 12, "x": 0, "y": 8}
+      },
+      {
+        "id": 5,
+        "title": "Memory Usage",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "(node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / node_memory_MemTotal_bytes * 100",
+            "legendFormat": "Memory Usage %"
+          }
+        ],
+        "gridPos": {"h": 8, "w": 12, "x": 12, "y": 8}
+      },
+      {
+        "id": 6,
+        "title": "Active Connections",
+        "type": "stat",
+        "targets": [
+          {
+            "expr": "socket_io_connected_clients{job=\"g-assistant\"}",
+            "legendFormat": "WebSocket Connections"
+          }
+        ],
+        "gridPos": {"h": 8, "w": 6, "x": 0, "y": 16}
+      },
+      {
+        "id": 7,
+        "title": "Agent Executions",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "rate(agent_executions_total{job=\"g-assistant\"}[5m])",
+            "legendFormat": "{{agent_type}}"
+          }
+        ],
+        "gridPos": {"h": 8, "w": 9, "x": 6, "y": 16}
+      },
+      {
+        "id": 8,
+        "title": "Database Queries",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "rate(database_queries_total{job=\"g-assistant\"}[5m])",
+            "legendFormat": "Queries/sec"
+          }
+        ],
+        "gridPos": {"h": 8, "w": 9, "x": 15, "y": 16}
+      }
+    ]
+  }
+}
