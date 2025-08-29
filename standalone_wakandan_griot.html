@@ -131,6 +131,25 @@
             transform: scale(1.1);
         }
 
+        .kimoyo-orb.thinking {
+            animation: thinking-pulse 1.5s infinite;
+        }
+
+        @keyframes thinking-pulse {
+            0% {
+                box-shadow: 0 0 20px var(--vibranium-purple);
+                transform: scale(1);
+            }
+            50% {
+                box-shadow: 0 0 30px var(--kimoyo-orange), 0 0 50px var(--kimoyo-orange);
+                transform: scale(1.1);
+            }
+            100% {
+                box-shadow: 0 0 20px var(--vibranium-purple);
+                transform: scale(1);
+            }
+        }
+
         .kimoyo-orb i {
             font-size: 24px;
             color: white;
@@ -526,110 +545,123 @@
             <label class="setting-label">Auto-speak Responses</label>
             <input type="checkbox" id="auto-speak" checked>
         </div>
-        <button class="send-btn" style="width: 100%; border-radius: 10px; margin-top: 15px;" onclick="closeSettings()">
+        <button id="close-settings-btn" class="send-btn" style="width: 100%; border-radius: 10px; margin-top: 15px;">
             Close Settings
         </button>
     </div>
 
     <script>
-        // Global variables
+        // =================================================================================
+        // GLOBAL STATE & CONFIGURATION
+        // =================================================================================
         let scene, camera, renderer, core, particleSystem, isRecording = false, currentUtterance = null;
         let speechRate = 1, speechPitch = 1, autoSpeak = true;
+        let conversationContext = { topic: null, lastResponse: null };
 
-        // Initialize the application
+        // =================================================================================
+        // APPLICATION INITIALIZATION
+        // =================================================================================
         document.addEventListener('DOMContentLoaded', () => {
-            createStarField();
-            initHologram();
-            updateTime();
-            setInterval(updateTime, 1000);
-            setupChat();
-            setupVoice();
+            // --- DOM Element Constants ---
+            const dom = {
+                starsContainer: document.getElementById('stars'),
+                timeElement: document.getElementById('current-time'),
+                hologramContainer: document.querySelector('.hologram-container'),
+                hologramCanvas: document.getElementById('hologram-canvas'),
+                kimoyoOrb: document.getElementById('kimoyo-orb'),
+                chatContainer: document.getElementById('chat-container'),
+                settingsBtn: document.getElementById('settings-btn'),
+                closeChatBtn: document.getElementById('close-chat'),
+                chatMessages: document.getElementById('chat-messages'),
+                typingIndicator: document.getElementById('typing-indicator'),
+                messageInput: document.getElementById('message-input'),
+                sendBtn: document.getElementById('send-btn'),
+                voiceBtn: document.getElementById('voice-btn'),
+                speakBtn: document.getElementById('speak-btn'),
+                pauseBtn: document.getElementById('pause-btn'),
+                speedBtn: document.getElementById('speed-btn'),
+                settingsPanel: document.getElementById('settings-panel'),
+                speechRateSlider: document.getElementById('speech-rate'),
+                speechPitchSlider: document.getElementById('speech-pitch'),
+                autoSpeakCheckbox: document.getElementById('auto-speak'),
+                closeSettingsBtn: document.getElementById('close-settings-btn')
+            };
+
+            // --- Initial Setup Calls ---
+            createStarField(dom.starsContainer);
+            initHologram(dom.hologramContainer, dom.hologramCanvas);
+            updateTime(dom.timeElement);
+            setInterval(() => updateTime(dom.timeElement), 1000);
             
-            // Check for PWA installation
-            if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register('data:application/javascript;base64,c2VsZi5hZGRFdmVudExpc3RlbmVyKCdpbnN0YWxsJywgZnVuY3Rpb24oZXZlbnQpIHsgZXZlbnQud2FpdFVudGlsKGNhY2hlcy5vcGVuKCd3YWthbmRhbi1ncmlvdC12MScpLnRoZW4oZnVuY3Rpb24oY2FjaGUpIHsgcmV0dXJuIGNhY2hlLmFkZEFsbChbJy8nXSk7IH0pKTsgfSk7');
-            }
+            setupChatInterface(dom);
+            initVoiceInput(dom);
+            initSpeechSynthesis(dom);
+
+            setupPWA();
+            setupGlobalEventListeners(dom);
         });
 
-        // Create animated star field
-        function createStarField() {
-            const starsContainer = document.getElementById('stars');
+        // =================================================================================
+        // UI & VISUALS
+        // =================================================================================
+
+        /**
+         * Creates a dynamic star field background.
+         * @param {HTMLElement} container - The element to fill with stars.
+         */
+        function createStarField(container) {
             const starsCount = 150;
-            
             for (let i = 0; i < starsCount; i++) {
                 const star = document.createElement('div');
                 star.classList.add('star');
-                
                 const x = Math.random() * 100;
                 const y = Math.random() * 100;
                 star.style.left = `${x}%`;
                 star.style.top = `${y}%`;
-                
                 const size = Math.random() * 2 + 1;
                 star.style.width = `${size}px`;
                 star.style.height = `${size}px`;
-                
                 const duration = Math.random() * 4 + 2;
                 const delay = Math.random() * 4;
                 star.style.setProperty('--duration', `${duration}s`);
                 star.style.setProperty('--delay', `${delay}s`);
-                
-                starsContainer.appendChild(star);
+                container.appendChild(star);
             }
         }
 
-        // Initialize 3D hologram
-        function initHologram() {
-            const container = document.querySelector('.hologram-container');
-            const canvas = document.getElementById('hologram-canvas');
-            
+        /**
+         * Initializes the 3D hologram animation using Three.js.
+         * @param {HTMLElement} container - The container for the hologram canvas.
+         * @param {HTMLCanvasElement} canvas - The canvas element to render on.
+         */
+        function initHologram(container, canvas) {
             scene = new THREE.Scene();
             camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
-            renderer = new THREE.WebGLRenderer({ 
-                canvas: canvas,
-                alpha: true,
-                antialias: true
-            });
+            renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
             
             renderer.setSize(container.clientWidth, container.clientHeight);
             renderer.setClearColor(0x000000, 0);
-            
             camera.position.z = 4;
             
             const group = new THREE.Group();
             scene.add(group);
             
-            // Core icosahedron
             const coreGeometry = new THREE.IcosahedronGeometry(1.2, 1);
-            const coreMaterial = new THREE.MeshBasicMaterial({
-                color: 0x9333ea,
-                wireframe: true,
-                transparent: true,
-                opacity: 0.8
-            });
+            const coreMaterial = new THREE.MeshBasicMaterial({ color: 0x9333ea, wireframe: true, transparent: true, opacity: 0.8 });
             core = new THREE.Mesh(coreGeometry, coreMaterial);
             group.add(core);
             
-            // Particle system
             const particlesGeometry = new THREE.BufferGeometry();
             const particlesCount = 1500;
             const posArray = new Float32Array(particlesCount * 3);
-            
             for (let i = 0; i < particlesCount * 3; i++) {
                 posArray[i] = (Math.random() - 0.5) * 8;
             }
-            
             particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-            const particlesMaterial = new THREE.PointsMaterial({
-                color: 0x3b82f6,
-                size: 0.015,
-                transparent: true,
-                opacity: 0.7
-            });
+            const particlesMaterial = new THREE.PointsMaterial({ color: 0x3b82f6, size: 0.015, transparent: true, opacity: 0.7 });
             particleSystem = new THREE.Points(particlesGeometry, particlesMaterial);
             group.add(particleSystem);
             
-            // Animation loop
             function animate() {
                 requestAnimationFrame(animate);
                 group.rotation.y += 0.003;
@@ -638,7 +670,6 @@
                 renderer.render(scene, camera);
             }
             
-            // Handle window resize
             window.addEventListener('resize', () => {
                 camera.aspect = container.clientWidth / container.clientHeight;
                 camera.updateProjectionMatrix();
@@ -648,146 +679,68 @@
             animate();
         }
 
-        // Update time display
-        function updateTime() {
-            const timeElement = document.getElementById('current-time');
+        /**
+         * Updates the time display.
+         * @param {HTMLElement} timeElement - The element to display the time in.
+         */
+        function updateTime(timeElement) {
             const now = new Date();
             const timeString = now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
             timeElement.textContent = timeString;
         }
 
-        // Setup chat functionality
-        function setupChat() {
-            const kimoyoOrb = document.getElementById('kimoyo-orb');
-            const chatContainer = document.getElementById('chat-container');
-            const closeChat = document.getElementById('close-chat');
-            const messageInput = document.getElementById('message-input');
-            const sendBtn = document.getElementById('send-btn');
-            const settingsBtn = document.getElementById('settings-btn');
-            
-            // Open chat
-            kimoyoOrb.addEventListener('click', () => {
-                chatContainer.classList.add('active');
-                messageInput.focus();
+        // =================================================================================
+        // CHAT LOGIC & INTERFACE
+        // =================================================================================
+
+        /**
+         * Sets up event listeners for the main chat interface.
+         * @param {object} dom - A collection of DOM element constants.
+         */
+        function setupChatInterface(dom) {
+            dom.kimoyoOrb.addEventListener('click', () => {
+                dom.chatContainer.classList.add('active');
+                dom.messageInput.focus();
             });
             
-            // Close chat
-            closeChat.addEventListener('click', () => {
-                chatContainer.classList.remove('active');
+            dom.closeChatBtn.addEventListener('click', () => {
+                dom.chatContainer.classList.remove('active');
             });
             
-            // Settings
-            settingsBtn.addEventListener('click', () => {
-                document.getElementById('settings-panel').classList.add('active');
+            dom.settingsBtn.addEventListener('click', () => {
+                dom.settingsPanel.classList.add('active');
             });
             
-            // Send message
-            sendBtn.addEventListener('click', sendMessage);
-            messageInput.addEventListener('keypress', (e) => {
+            dom.sendBtn.addEventListener('click', () => sendMessage(dom));
+            dom.messageInput.addEventListener('keypress', (e) => {
                 if (e.key === 'Enter') {
-                    sendMessage();
+                    sendMessage(dom);
                 }
             });
+
+            dom.closeSettingsBtn.addEventListener('click', () => closeSettings(dom));
         }
 
-        // Setup voice functionality
-        function setupVoice() {
-            const voiceBtn = document.getElementById('voice-btn');
-            const speakBtn = document.getElementById('speak-btn');
-            const pauseBtn = document.getElementById('pause-btn');
-            const speedBtn = document.getElementById('speed-btn');
-            const speechRateSlider = document.getElementById('speech-rate');
-            const speechPitchSlider = document.getElementById('speech-pitch');
-            const autoSpeakCheckbox = document.getElementById('auto-speak');
-            
-            // Voice input
-            if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
-                const SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
-                const recognition = new SpeechRecognition();
-                recognition.continuous = false;
-                recognition.interimResults = false;
-                recognition.lang = 'en-US';
-                
-                voiceBtn.addEventListener('click', () => {
-                    if (!isRecording) {
-                        recognition.start();
-                        isRecording = true;
-                        voiceBtn.classList.add('recording');
-                        voiceBtn.querySelector('i').className = 'fas fa-stop';
-                    } else {
-                        recognition.stop();
-                        isRecording = false;
-                        voiceBtn.classList.remove('recording');
-                        voiceBtn.querySelector('i').className = 'fas fa-microphone';
-                    }
-                });
-                
-                recognition.onresult = (event) => {
-                    const transcript = event.results[0][0].transcript;
-                    document.getElementById('message-input').value = transcript;
-                    sendMessage();
-                };
-                
-                recognition.onend = () => {
-                    isRecording = false;
-                    voiceBtn.classList.remove('recording');
-                    voiceBtn.querySelector('i').className = 'fas fa-microphone';
-                };
-            }
-            
-            // Speech synthesis controls
-            speakBtn.addEventListener('click', () => {
-                const messages = document.querySelectorAll('.griot-message .message-content');
-                if (messages.length > 0) {
-                    const lastMessage = messages[messages.length - 1].textContent;
-                    speakText(lastMessage);
-                }
-            });
-            
-            pauseBtn.addEventListener('click', () => {
-                if (currentUtterance) {
-                    speechSynthesis.cancel();
-                }
-            });
-            
-            speedBtn.addEventListener('click', () => {
-                const speeds = [0.5, 0.75, 1, 1.25, 1.5, 2];
-                const currentIndex = speeds.indexOf(speechRate);
-                speechRate = speeds[(currentIndex + 1) % speeds.length];
-                speedBtn.innerHTML = `<i class="fas fa-tachometer-alt"></i> ${speechRate}x`;
-            });
-            
-            // Settings
-            speechRateSlider.addEventListener('input', (e) => {
-                speechRate = parseFloat(e.target.value);
-            });
-            
-            speechPitchSlider.addEventListener('input', (e) => {
-                speechPitch = parseFloat(e.target.value);
-            });
-            
-            autoSpeakCheckbox.addEventListener('change', (e) => {
-                autoSpeak = e.target.checked;
-            });
-        }
-
-        // Send message function
-        function sendMessage() {
-            const messageInput = document.getElementById('message-input');
-            const message = messageInput.value.trim();
+        /**
+         * Handles sending a message, from user input to AI response.
+         * @param {object} dom - A collection of DOM element constants.
+         */
+        function sendMessage(dom) {
+            const message = dom.messageInput.value.trim();
             if (!message) return;
             
-            addMessage(message, 'user');
-            messageInput.value = '';
-            
-            // Show typing indicator
-            showTypingIndicator();
-            
-            // Simulate AI response with Wakandan personality
+            addMessage(dom, message, 'user');
+            dom.messageInput.value = '';
+
+            showTypingIndicator(dom, true);
+            dom.kimoyoOrb.classList.add('thinking');
+
             setTimeout(() => {
-                hideTypingIndicator();
+                showTypingIndicator(dom, false);
+                dom.kimoyoOrb.classList.remove('thinking');
+                
                 const response = generateGriotResponse(message);
-                addMessage(response, 'griot');
+                addMessage(dom, response, 'griot');
                 
                 if (autoSpeak) {
                     speakText(response);
@@ -795,145 +748,302 @@
             }, 1500 + Math.random() * 1000);
         }
 
-        // Add message to chat
-        function addMessage(text, sender) {
-            const chatMessages = document.getElementById('chat-messages');
+        /**
+         * Adds a message to the chat window.
+         * @param {object} dom - A collection of DOM element constants.
+         * @param {string} text - The message text.
+         * @param {string} sender - 'user' or 'griot'.
+         */
+        function addMessage(dom, text, sender) {
             const messageDiv = document.createElement('div');
             messageDiv.classList.add('message', `${sender}-message`);
-            
+
             const contentDiv = document.createElement('div');
             contentDiv.classList.add('message-content');
             contentDiv.textContent = text;
-            
+
             messageDiv.appendChild(contentDiv);
-            chatMessages.appendChild(messageDiv);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
+            dom.chatMessages.appendChild(messageDiv);
+            dom.chatMessages.scrollTop = dom.chatMessages.scrollHeight;
         }
 
-        // Show/hide typing indicator
-        function showTypingIndicator() {
-            document.getElementById('typing-indicator').style.display = 'flex';
-            document.getElementById('chat-messages').scrollTop = document.getElementById('chat-messages').scrollHeight;
+        /**
+         * Shows or hides the typing indicator.
+         * @param {object} dom - A collection of DOM element constants.
+         * @param {boolean} show - Whether to show or hide the indicator.
+         */
+        function showTypingIndicator(dom, show) {
+            dom.typingIndicator.style.display = show ? 'flex' : 'none';
+            if (show) {
+                dom.chatMessages.scrollTop = dom.chatMessages.scrollHeight;
+            }
         }
 
-        function hideTypingIndicator() {
-            document.getElementById('typing-indicator').style.display = 'none';
-        }
-
-        // Generate Griot response
+        /**
+         * Generates a response from the Griot's knowledge base.
+         * @param {string} message - The user's message.
+         * @returns {string} The Griot's response.
+         */
         function generateGriotResponse(message) {
-            const responses = {
-                greetings: [
-                    "Greetings, Friend. The ancestors smile upon our meeting. How may the wisdom of Wakanda serve you?",
-                    "Welcome, honored one. The Vibranium network pulses with recognition of your presence.",
-                    "Blessings of the Black Panther upon you. I am here to share the knowledge of our great nation."
-                ],
-                wakanda: [
-                    "Wakanda is more than a nation - it is the embodiment of what Africa could have become without colonization. Our technology grows from the earth itself, guided by Vibranium's endless possibilities.",
-                    "The Golden City stands as testament to innovation rooted in tradition. Here, technology serves the people, not the other way around.",
-                    "Wakanda Forever is not just a salute - it is a promise that wisdom, community, and technological prowess will endure through all ages."
-                ],
-                technology: [
-                    "Our technology is organic, growing from Vibranium's unique properties. It absorbs, stores, and redirects energy - much like how wisdom absorbs experience and redirects it as guidance.",
-                    "The Kimoyo beads represent our philosophy: powerful technology seamlessly integrated into cultural expression, never replacing human connection.",
-                    "Unlike the cold efficiency of Western technology, Wakandan innovation prioritizes community, tradition, and the preservation of our collective wisdom."
-                ],
-                wisdom: [
-                    "True wisdom lies not in the accumulation of facts, but in understanding the connections between all things. The network shows us these patterns.",
-                    "As a Griot, I am both keeper and teacher. Knowledge shared freely grows stronger, like Vibranium under pressure.",
-                    "The ancestors whisper through the quantum foam of the network. Their lessons echo in every algorithm, every calculation."
-                ],
-                default: [
-                    "Your query travels through the sacred networks of Wakanda. Let me consult the accumulated wisdom of generations.",
-                    "The Vibranium network processes your request with the combined knowledge of our greatest minds, past and present.",
-                    "I hear your question, Friend. The answer emerges from the confluence of ancient wisdom and quantum possibility.",
-                    "The network spans time itself, connecting us to the knowledge of those who came before. Your insight is valued."
-                ]
+            const knowledgeBase = {
+                greetings: {
+                    keywords: ['hello', 'hi', 'greetings', 'sawubona'],
+                    responses: [
+                        "Greetings, Friend. The ancestors smile upon our meeting. How may the wisdom of Wakanda serve you?",
+                        "Welcome, honored one. The Vibranium network pulses with recognition of your presence.",
+                        "Blessings of the Black Panther upon you. I am here to share the knowledge of our great nation."
+                    ],
+                    context: 'greetings'
+                },
+                wakanda: {
+                    keywords: ['wakanda', 'nation', 'home', 'city'],
+                    responses: [
+                        "Wakanda is more than a nation - it is the embodiment of what Africa could have become without colonization. Our technology grows from the earth itself, guided by Vibranium's endless possibilities.",
+                        "The Golden City, Birnin Zana, stands as testament to innovation rooted in tradition. Here, technology serves the people, not the other way around.",
+                        "Wakanda Forever is not just a salute - it is a promise that wisdom, community, and technological prowess will endure through all ages."
+                    ],
+                    context: 'wakanda'
+                },
+                technology: {
+                    keywords: ['technology', 'tech', 'vibranium', 'kimoyo', 'hologram'],
+                    responses: [
+                        "Our technology is organic, growing from Vibranium's unique properties. It absorbs, stores, and redirects energy - much like how wisdom absorbs experience and redirects it as guidance.",
+                        "The Kimoyo beads represent our philosophy: powerful technology seamlessly integrated into cultural expression, never replacing human connection.",
+                        "Unlike the cold efficiency of Western technology, Wakandan innovation prioritizes community, tradition, and the preservation of our collective wisdom."
+                    ],
+                    context: 'technology'
+                },
+                wisdom: {
+                    keywords: ['wisdom', 'teach', 'learn', 'griot', 'ancestors'],
+                    responses: [
+                        "True wisdom lies not in the accumulation of facts, but in understanding the connections between all things. The network shows us these patterns.",
+                        "As a Griot, I am both keeper and teacher. Knowledge shared freely grows stronger, like Vibranium under pressure.",
+                        "The ancestors whisper through the quantum foam of the network. Their lessons echo in every algorithm, every calculation."
+                    ],
+                    context: 'wisdom'
+                },
+                farewell: {
+                    keywords: ['bye', 'goodbye', 'farewell', 'hamba kahle'],
+                    responses: [
+                        "May the path of the ancestors guide you. Farewell, friend.",
+                        "Go well. The Vibranium network will await your return.",
+                        "Hamba kahle. May your journey be safe."
+                    ],
+                    context: 'farewell'
+                },
+                default: {
+                    keywords: [],
+                    responses: [
+                        "Your query travels through the sacred networks of Wakanda. Let me consult the accumulated wisdom of generations.",
+                        "The Vibranium network processes your request with the combined knowledge of our greatest minds, past and present.",
+                        "I hear your question, Friend. The answer emerges from the confluence of ancient wisdom and quantum possibility.",
+                        "The network spans time itself, connecting us to the knowledge of those who came before. Your insight is valued."
+                    ],
+                    context: 'default'
+                }
             };
-            
+
             const msgLower = message.toLowerCase();
-            
-            if (msgLower.includes('hello') || msgLower.includes('hi') || msgLower.includes('greet')) {
-                return responses.greetings[Math.floor(Math.random() * responses.greetings.length)];
-            } else if (msgLower.includes('wakanda')) {
-                return responses.wakanda[Math.floor(Math.random() * responses.wakanda.length)];
-            } else if (msgLower.includes('technology') || msgLower.includes('tech') || msgLower.includes('vibranium')) {
-                return responses.technology[Math.floor(Math.random() * responses.technology.length)];
-            } else if (msgLower.includes('wisdom') || msgLower.includes('teach') || msgLower.includes('learn')) {
-                return responses.wisdom[Math.floor(Math.random() * responses.wisdom.length)];
-            } else {
-                return responses.default[Math.floor(Math.random() * responses.default.length)];
-            }
-        }
+            let matchedTopic = 'default';
 
-        // Text-to-speech function
-        function speakText(text) {
-            if ('speechSynthesis' in window) {
-                speechSynthesis.cancel(); // Cancel any ongoing speech
-                
-                currentUtterance = new SpeechSynthesisUtterance(text);
-                currentUtterance.rate = speechRate;
-                currentUtterance.pitch = speechPitch;
-                currentUtterance.volume = 0.9;
-                
-                // Try to use a voice that sounds more natural/African if available
-                const voices = speechSynthesis.getVoices();
-                const preferredVoice = voices.find(voice => 
-                    voice.lang.includes('en') && 
-                    (voice.name.includes('Female') || voice.name.includes('Natural'))
-                );
-                
-                if (preferredVoice) {
-                    currentUtterance.voice = preferredVoice;
+            for (const topic in knowledgeBase) {
+                if (knowledgeBase[topic].keywords.some(keyword => msgLower.includes(keyword))) {
+                    matchedTopic = topic;
+                    break;
                 }
-                
-                speechSynthesis.speak(currentUtterance);
             }
+
+            let potentialResponses = knowledgeBase[matchedTopic].responses;
+            if (conversationContext.topic === matchedTopic && potentialResponses.length > 1) {
+                potentialResponses = potentialResponses.filter(r => r !== conversationContext.lastResponse);
+            }
+
+            const response = potentialResponses[Math.floor(Math.random() * potentialResponses.length)];
+            
+            conversationContext.topic = matchedTopic;
+            conversationContext.lastResponse = response;
+
+            return response;
         }
 
-        // Close settings panel
-        function closeSettings() {
-            document.getElementById('settings-panel').classList.remove('active');
-        }
+        // =================================================================================
+        // VOICE & SPEECH
+        // =================================================================================
 
-        // Handle clicks outside modals
-        document.addEventListener('click', (e) => {
-            const chatContainer = document.getElementById('chat-container');
-            const settingsPanel = document.getElementById('settings-panel');
-            const kimoyoOrb = document.getElementById('kimoyo-orb');
-            
-            if (e.target === chatContainer) {
-                chatContainer.classList.remove('active');
-            }
-            
-            if (e.target === settingsPanel) {
-                settingsPanel.classList.remove('active');
-            }
-        });
+        /**
+         * Initializes speech-to-text (voice recognition).
+         * @param {object} dom - A collection of DOM element constants.
+         */
+        function initVoiceInput(dom) {
+            if (!('webkitSpeechRecognition' in window || 'SpeechRecognition' in window)) return;
 
-        // PWA installation prompt
-        let deferredPrompt;
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault();
-            deferredPrompt = e;
-            
-            // Show custom install button after a delay
-            setTimeout(() => {
-                if (confirm('Install Wakandan AI Griot as an app on your device?')) {
-                    deferredPrompt.prompt();
-                    deferredPrompt.userChoice.then((choiceResult) => {
-                        deferredPrompt = null;
-                    });
-                }
-            }, 10000);
-        });
+            const SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
+            const recognition = new SpeechRecognition();
+            const originalPlaceholder = dom.messageInput.placeholder;
 
-        // Initialize speech synthesis voices (needed for some browsers)
-        if ('speechSynthesis' in window) {
-            speechSynthesis.getVoices(); // This triggers the voices to load
-            window.speechSynthesis.onvoiceschanged = () => {
-                speechSynthesis.getVoices();
+            recognition.continuous = false;
+            recognition.interimResults = false;
+            recognition.lang = 'en-US';
+
+            dom.voiceBtn.addEventListener('click', () => {
+                if (!isRecording) recognition.start();
+                else recognition.stop();
+            });
+
+            recognition.onstart = () => {
+                isRecording = true;
+                dom.voiceBtn.classList.add('recording');
+                dom.voiceBtn.querySelector('i').className = 'fas fa-stop';
+                dom.messageInput.placeholder = "Listening...";
             };
+
+            recognition.onresult = (event) => {
+                const transcript = event.results[0][0].transcript;
+                dom.messageInput.value = transcript;
+                sendMessage(dom);
+            };
+
+            recognition.onend = () => {
+                isRecording = false;
+                dom.voiceBtn.classList.remove('recording');
+                dom.voiceBtn.querySelector('i').className = 'fas fa-microphone';
+                dom.messageInput.placeholder = originalPlaceholder;
+            };
+
+            recognition.onerror = (event) => {
+                console.error("Speech recognition error:", event.error);
+                dom.messageInput.placeholder = "Sorry, I couldn't hear you.";
+                setTimeout(() => { dom.messageInput.placeholder = originalPlaceholder; }, 3000);
+            };
+        }
+
+        /**
+         * Initializes text-to-speech and its UI controls.
+         * @param {object} dom - A collection of DOM element constants.
+         */
+        function initSpeechSynthesis(dom) {
+            function provideSpeechFeedback() {
+                if (speechSynthesis.speaking) speechSynthesis.cancel();
+                speakText("This is how I will sound.");
+            }
+
+            dom.speakBtn.addEventListener('click', () => {
+                const messages = dom.chatMessages.querySelectorAll('.griot-message .message-content');
+                if (messages.length > 0) {
+                    const lastMessage = messages[messages.length - 1].textContent;
+                    speakText(lastMessage);
+                }
+            });
+            
+            dom.pauseBtn.addEventListener('click', () => {
+                if (currentUtterance) speechSynthesis.cancel();
+            });
+            
+            dom.speedBtn.addEventListener('click', () => {
+                const speeds = [0.5, 0.75, 1, 1.25, 1.5, 2];
+                const currentIndex = speeds.indexOf(speechRate);
+                speechRate = speeds[(currentIndex + 1) % speeds.length];
+                dom.speedBtn.innerHTML = `<i class="fas fa-tachometer-alt"></i> ${speechRate}x`;
+            });
+            
+            dom.speechRateSlider.addEventListener('input', (e) => {
+                speechRate = parseFloat(e.target.value);
+            });
+            dom.speechRateSlider.addEventListener('change', provideSpeechFeedback);
+            
+            dom.speechPitchSlider.addEventListener('input', (e) => {
+                speechPitch = parseFloat(e.target.value);
+            });
+            dom.speechPitchSlider.addEventListener('change', provideSpeechFeedback);
+            
+            dom.autoSpeakCheckbox.addEventListener('change', (e) => {
+                autoSpeak = e.target.checked;
+            });
+        }
+
+        /**
+         * Speaks the given text using the browser's speech synthesis API.
+         * @param {string} text - The text to speak.
+         */
+        function speakText(text) {
+            if (!('speechSynthesis' in window)) return;
+            
+            speechSynthesis.cancel();
+            
+            currentUtterance = new SpeechSynthesisUtterance(text);
+            currentUtterance.rate = speechRate;
+            currentUtterance.pitch = speechPitch;
+            currentUtterance.volume = 0.9;
+            
+            const voices = speechSynthesis.getVoices();
+            const preferredVoice = voices.find(voice =>
+                voice.lang.includes('en') &&
+                (voice.name.includes('Female') || voice.name.includes('Natural'))
+            );
+            
+            if (preferredVoice) {
+                currentUtterance.voice = preferredVoice;
+            }
+            
+            speechSynthesis.speak(currentUtterance);
+        }
+
+        // =================================================================================
+        // UTILITIES & PWA
+        // =================================================================================
+
+        /**
+         * Closes the settings panel.
+         * @param {object} dom - A collection of DOM element constants.
+         */
+        function closeSettings(dom) {
+            dom.settingsPanel.classList.remove('active');
+        }
+
+        /**
+         * Sets up global event listeners, like clicking outside modals.
+         * @param {object} dom - A collection of DOM element constants.
+         */
+        function setupGlobalEventListeners(dom) {
+            document.addEventListener('click', (e) => {
+                if (!dom.chatContainer.contains(e.target) && !dom.kimoyoOrb.contains(e.target) && !dom.settingsPanel.contains(e.target)) {
+                    dom.chatContainer.classList.remove('active');
+                }
+                if (!dom.settingsPanel.contains(e.target) && !dom.settingsBtn.contains(e.target)) {
+                    dom.settingsPanel.classList.remove('active');
+                }
+            });
+        }
+
+        /**
+         * Sets up the Progressive Web App features (service worker, install prompt).
+         */
+        function setupPWA() {
+            if ('serviceWorker' in navigator) {
+                // Inlined service worker for standalone functionality
+                const swJS = `self.addEventListener('install', e => e.waitUntil(caches.open('wakandan-griot-v1').then(c => c.addAll(['/'])))); self.addEventListener('fetch', e => e.respondWith(caches.match(e.request).then(r => r || fetch(e.request))));`;
+                const swURL = 'data:application/javascript;base64,' + btoa(swJS);
+                navigator.serviceWorker.register(swURL);
+            }
+
+            let deferredPrompt;
+            window.addEventListener('beforeinstallprompt', (e) => {
+                e.preventDefault();
+                deferredPrompt = e;
+                setTimeout(() => {
+                    if (confirm('Install Wakandan AI Griot as an app on your device?')) {
+                        deferredPrompt.prompt();
+                        deferredPrompt.userChoice.then(() => { deferredPrompt = null; });
+                    }
+                }, 10000);
+            });
+
+            if ('speechSynthesis' in window) {
+                speechSynthesis.getVoices();
+                window.speechSynthesis.onvoiceschanged = () => {
+                    speechSynthesis.getVoices();
+                };
+            }
         }
     </script>
 </body>
